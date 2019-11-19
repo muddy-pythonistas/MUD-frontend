@@ -16,7 +16,7 @@ user should be of object type {
 export const login = (dispatch, user) => {
     dispatch({ type: IS_LOGGING_IN });
     axiosInstance()
-        .post('/api/login', user)
+        .post('/api/login/', user)
         .then(res => {
             console.log(res) //not sure if/how we get token here
             dispatch({ type: LOGIN_SUCCESS, });
