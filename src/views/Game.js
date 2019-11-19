@@ -64,7 +64,7 @@ const testTiles = [
   {
     n_to: 0,
     e_to: 1,
-    s_to: 0,
+    s_to: 1,
     w_to: 1
   },
   {
@@ -81,21 +81,21 @@ const testTiles = [
   },
   {
     n_to: 0,
-    e_to: 1,
+    e_to: 0,
+    s_to: 0,
+    w_to: 0
+  },
+  {
+    n_to: 1,
+    e_to: 0,
     s_to: 0,
     w_to: 0
   },
   {
     n_to: 0,
-    e_to: 1,
-    s_to: 0,
-    w_to: 1
-  },
-  {
-    n_to: 0,
     e_to: 0,
     s_to: 0,
-    w_to: 1
+    w_to: 0
   },
   {
     n_to: 1,

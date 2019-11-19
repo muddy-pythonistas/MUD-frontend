@@ -7,65 +7,69 @@ import {
   vertWall_16x16
 } from './assets';
 
-export const Tile = ({ n_to, e_to, s_to, w_to }) => {
-  return (
-    <TileContainer>
-      <FullTileFloor />
-      <TileWallGrid>
-        {n_to ? (
-          w_to ? (
-            <CornerSE />
+export const Tile = ({ n_to, e_to, s_to, w_to, ...rest }) => {
+  if (n_to || e_to || s_to || w_to) {
+    return (
+      <TileContainer>
+        <FullTileFloor />
+        <TileWallGrid>
+          {n_to ? (
+            w_to ? (
+              <CornerSE />
+            ) : (
+              <WestWall />
+            )
+          ) : w_to ? (
+            <NorthWall />
           ) : (
-            <WestWall />
-          )
-        ) : w_to ? (
-          <NorthWall />
-        ) : (
-          <CornerNW />
-        )}
-        {n_to ? <FloorTile /> : <NorthWall />}
-        {n_to ? (
-          e_to ? (
-            <CornerSW />
-          ) : (
-            <EastWall />
-          )
-        ) : e_to ? (
-          <NorthWall />
-        ) : (
-          <CornerNE />
-        )}
-
-        {w_to ? <FloorTile /> : <WestWall />}
-        <FloorTile />
-        {e_to ? <FloorTile /> : <EastWall />}
-
-        {s_to ? (
-          w_to ? (
-            <CornerNE />
-          ) : (
-            <WestWall />
-          )
-        ) : w_to ? (
-          <SouthWall />
-        ) : (
-          <CornerSW />
-        )}
-        {s_to ? <FloorTile /> : <SouthWall />}
-        {s_to ? (
-          e_to ? (
             <CornerNW />
+          )}
+          {n_to ? <FloorTile /> : <NorthWall />}
+          {n_to ? (
+            e_to ? (
+              <CornerSW />
+            ) : (
+              <EastWall />
+            )
+          ) : e_to ? (
+            <NorthWall />
           ) : (
-            <EastWall />
-          )
-        ) : e_to ? (
-          <SouthWall />
-        ) : (
-          <CornerSE />
-        )}
-      </TileWallGrid>
-    </TileContainer>
-  );
+            <CornerNE />
+          )}
+
+          {w_to ? <FloorTile /> : <WestWall />}
+          <FloorTile />
+          {e_to ? <FloorTile /> : <EastWall />}
+
+          {s_to ? (
+            w_to ? (
+              <CornerNE />
+            ) : (
+              <WestWall />
+            )
+          ) : w_to ? (
+            <SouthWall />
+          ) : (
+            <CornerSW />
+          )}
+          {s_to ? <FloorTile /> : <SouthWall />}
+          {s_to ? (
+            e_to ? (
+              <CornerNW />
+            ) : (
+              <EastWall />
+            )
+          ) : e_to ? (
+            <SouthWall />
+          ) : (
+            <CornerSE />
+          )}
+        </TileWallGrid>
+      </TileContainer>
+    );
+  } else {
+    return <EmptyTile />;
+  }
 };
 
 const FloorTile = styled.div`
@@ -136,3 +140,5 @@ const FullTileFloor = styled.div`
 const TileContainer = styled.div`
   position: relative;
 `;
+
+const EmptyTile = styled.div``;
