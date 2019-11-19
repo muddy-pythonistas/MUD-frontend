@@ -13,9 +13,9 @@ export const initialState = {
         isLoading: false,
         uuid: '',
         name: '',
-        roomTitle: '',
-        roomDescription: '',
-        playersInRoom: [],
+        title: '',
+        description: '',
+        players: [],
         error_msg: '', //comes from the game
         errorMessage: '' //comes from the server
     },
