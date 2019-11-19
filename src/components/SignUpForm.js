@@ -82,6 +82,7 @@ export const SignUpForm = () => {
         }
         return 
     };
+    
     const checkForErrors = () => {
         let errors = 0;
         for (let key in userErrors) {
