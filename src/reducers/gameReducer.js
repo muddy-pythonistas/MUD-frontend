@@ -19,47 +19,30 @@ game: {
     roomTitle: '',
     roomDescription: '',
     playersInRoom: [],
+    error_msg: '',
     errorMessage: ''
 }
 */
 
 export const gameReducer = (state, { type, payload }) => {
     switch (type) {
-        case START_INIT:
+        case START_INIT, START_MOVE, START_SAY:
             return {
                 ...state,
+                isLoading: true,
+                errorMessage: ''
             };
-        case INIT_SUCCESS:
+        case INIT_SUCCESS, MOVE_SUCCESS, SAY_SUCCESS:
             return {
                 ...state,
+                isLoading: false,
+                ...payload
             };
-        case INIT_ERROR:
+        case INIT_ERROR, MOVE_ERROR, SAY_ERROR:
             return {
                 ...state,
-            };
-        case START_MOVE:
-            return {
-                ...state,
-            };
-        case MOVE_SUCCESS:
-            return {
-                ...state,
-            };
-        case MOVE_ERROR:
-            return {
-                ...state,
-            };
-        case START_SAY:
-            return {
-                ...state,
-            };
-        case SAY_SUCCESS:
-            return {
-                ...state,
-            };
-        case SAY_ERROR:
-            return {
-                ...state,
+                isLoading: false,
+                errorMessage: payload
             };
         default:
             return state;

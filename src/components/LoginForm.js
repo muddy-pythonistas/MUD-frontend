@@ -7,12 +7,12 @@ export const LoginForm = () => {
 
     const [userInput, setUserInput] = useState({
         username: '',
-        passOne: '',
+        password: '',
     });
 
     const [userErrors, setUserErrors] = useState({
         username: '',
-        passOne: '',
+        password: '',
     });
 
     const handleChange = e => {
@@ -76,12 +76,12 @@ export const LoginForm = () => {
             <label>
                 Password:
                 <input
-                    name='passOne'
+                    name='password'
                     type='password'
-                    value={userInput.passOne}
+                    value={userInput.password}
                     onChange={handleChange}
                 />
-                <span>{userErrors.passOne}</span>
+                <span>{userErrors.password}</span>
             </label>
             <input type='submit' onSubmit={handleSubmit} />
         </form>

@@ -16,7 +16,8 @@ export const initialState = {
         roomTitle: '',
         roomDescription: '',
         playersInRoom: [],
-        errorMessage: ''
+        error_msg: '', //comes from the game
+        errorMessage: '' //comes from the server
     },
     map: {
         isLoading: false,
