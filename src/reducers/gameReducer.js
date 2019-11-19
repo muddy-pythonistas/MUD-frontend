@@ -23,7 +23,7 @@ game: {
 }
 */
 
-export const loginReducer = (state, { type, payload }) => {
+export const gameReducer = (state, { type, payload }) => {
     switch (type) {
         case START_INIT:
             return {
