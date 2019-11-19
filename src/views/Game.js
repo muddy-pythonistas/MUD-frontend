@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Sidebar, Tile } from '../components';
 
 import { useStateValue } from '../hooks/useStateValue';
-import { getMap, gameInit } from '../actions'
+import { getMap, gameInit } from '../actions';
 
 const testTiles = [
   {
@@ -64,7 +64,7 @@ const testTiles = [
   {
     n_to: 0,
     e_to: 1,
-    s_to: 0,
+    s_to: 1,
     w_to: 1
   },
   {
@@ -81,40 +81,40 @@ const testTiles = [
   },
   {
     n_to: 0,
-    e_to: 1,
-    s_to: 0,
-    w_to: 0
-  },
-  {
-    n_to: 0,
-    e_to: 1,
-    s_to: 0,
-    w_to: 1
-  },
-  {
-    n_to: 0,
     e_to: 0,
     s_to: 0,
-    w_to: 1
+    w_to: 0
   },
   {
     n_to: 1,
     e_to: 0,
     s_to: 0,
-    w_to: 1
+    w_to: 0
+  },
+  {
+    n_to: 0,
+    e_to: 0,
+    s_to: 0,
+    w_to: 0
+  },
+  {
+    n_to: 1,
+    e_to: 0,
+    s_to: 0,
+    w_to: 0
   }
 ];
 
 export const Game = () => {
-    const [{map, game}, dispatch] = useStateValue()
+  const [{ map, game }, dispatch] = useStateValue();
 
-    useEffect(() => {
-        getMap(dispatch)
-        gameInit(dispatch)
-    }, []);
+  useEffect(() => {
+    getMap(dispatch);
+    gameInit(dispatch);
+  }, []);
 
-    
-    console.log(map, game)
+  console.log(map, game)
+  
   return (
     <StyledGame>
       <Map>
@@ -128,15 +128,15 @@ export const Game = () => {
 };
 
 const StyledGame = styled.div`
-  width: 800px;
+  width: 712px;
 
   display: grid;
   grid-template-columns: 4fr 1fr;
 `;
 
 const Map = styled.div`
-  width: 640px;
-  height: 640px;
+  width: 512px;
+  height: 512px;
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
