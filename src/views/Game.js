@@ -113,7 +113,8 @@ export const Game = () => {
     gameInit(dispatch);
   }, []);
 
-  console.log(game);
+  console.log(map, game)
+  
   return (
     <StyledGame>
       <Map>
