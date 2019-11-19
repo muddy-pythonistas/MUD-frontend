@@ -7,7 +7,7 @@ export const axiosWithAuth = () => {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
         },
-        baseURL: 'https://lambda-mud-test.herokuapp.com/',
+        baseURL: 'https://mud-cs23-backend.herokuapp.com/',
     });
 };
 
@@ -16,6 +16,6 @@ export const axiosInstance = () => {
         headers: {
             'Content-Type': 'application/json',
         },
-        baseURL: 'https://lambda-mud-test.herokuapp.com/',
+        baseURL: 'https://mud-cs23-backend.herokuapp.com/',
     });
 };
