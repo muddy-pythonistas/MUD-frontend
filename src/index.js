@@ -18,8 +18,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const theme = {
-  // primaryColor: 'blue',
-  // secondaryColor: 'green'
+  spriteSize: 16,
+  tileSize: 4
 };
 
 ReactDOM.render(
