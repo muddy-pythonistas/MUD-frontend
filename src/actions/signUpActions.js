@@ -3,7 +3,6 @@ import { axiosInstance } from '../utils/axiosTypes';
 export const IS_SIGNING_UP = 'IS_SIGNING_UP';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
-export const SIGNUP_OVER = 'SIGNUP_OVER';
 
 /*user should be of object type 
 {
@@ -14,16 +13,15 @@ export const SIGNUP_OVER = 'SIGNUP_OVER';
 */
 
 export const signUp = (dispatch, user) => {
-    console.log(user)
     dispatch({ type: IS_SIGNING_UP });
     axiosInstance()
-        .post('/api/registration', user)
+        .post('/api/registration/', user)
         .then(res => {
             console.log(res); //need to see how token comes back
             dispatch({ type: SIGNUP_SUCCESS });
         })
         .catch(err => {
-            console.log(err); //not sure what type of error we get
+            console.log('error', err); //not sure what type of error we get
             dispatch({ type: SIGNUP_ERROR });
         });
 };

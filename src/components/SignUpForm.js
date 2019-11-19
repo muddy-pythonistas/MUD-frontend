@@ -7,14 +7,14 @@ export const SignUpForm = () => {
 
     const [userInput, setUserInput] = useState({
         username: '',
-        passOne: '',
-        passTwo: '',
+        password1: '',
+        password2: '',
     });
 
     const [userErrors, setUserErrors] = useState({
         username: '',
-        passOne: '',
-        passTwo: '',
+        password1: '',
+        password2: '',
     });
 
     const handleChange = e => {
@@ -33,10 +33,10 @@ export const SignUpForm = () => {
         }
     };
 
-    const validateData = () => {
-        requiredFields();
-        checkPasswords()
-        let errorsPresent = checkForErrors()
+    const validateData = async () => {
+        await requiredFields();
+        await checkPasswords()
+        let errorsPresent = await checkForErrors()
         return errorsPresent
     };
 
@@ -51,34 +51,36 @@ export const SignUpForm = () => {
                 }));
             }
         }
+        return
     };
 
     const checkPasswords = () => {
-        let passTest = /^(?=.*\d).{8}/.test(userInput.passOne);
+        let passTest = /^(?=.*\d).{8}/.test(userInput.password1);
         if (!passTest) {
             setUserErrors(prevState => ({
                 ...prevState,
-                passOne:
+                password1:
                     'Password must be at least 8 characters with one number.',
             }));
             setUserInput(prevState => ({
                 ...prevState,
-                passOne: '',
-                passTwo: '',
+                password1: '',
+                password2: '',
             }));
         }
 
-        if (userInput.passOne !== userInput.passTwo) {
+        if (userInput.password1 !== userInput.password2) {
             setUserErrors(prevState => ({
                 ...prevState,
-                passTwo: 'Your passwords must match. Please try again.',
+                password2: 'Your passwords must match. Please try again.',
             }));
             setUserInput(prevState => ({
                 ...prevState,
-                passOne: '',
-                passTwo: '',
+                password1: '',
+                password2: '',
             }));
         }
+        return 
     };
     const checkForErrors = () => {
         let errors = 0;
@@ -106,22 +108,22 @@ export const SignUpForm = () => {
             <label>
                 Password:
                 <input
-                    name='passOne'
+                    name='password1'
                     type='password'
-                    value={userInput.passOne}
+                    value={userInput.password1}
                     onChange={handleChange}
                 />
-                <span>{userErrors.passOne}</span>
+                <span>{userErrors.password1}</span>
             </label>
             <label>
                 Confirm Password:
                 <input
-                    name='passTwo'
+                    name='password2'
                     type='password'
-                    value={userInput.passTwo}
+                    value={userInput.password2}
                     onChange={handleChange}
                 />
-                <span>{userErrors.passTwo}</span>
+                <span>{userErrors.password2}</span>
             </label>
             <input type='submit' onSubmit={handleSubmit} />
         </form>
