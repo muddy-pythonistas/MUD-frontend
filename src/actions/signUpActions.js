@@ -13,7 +13,8 @@ export const SIGNUP_OVER = 'SIGNUP_OVER';
 }
 */
 
-export const signUpAction = (dispatch, user) => {
+export const signUp = (dispatch, user) => {
+    console.log(user)
     dispatch({ type: IS_SIGNING_UP });
     axiosInstance()
         .post('/api/registration', user)

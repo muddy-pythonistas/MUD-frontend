@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import {login} from '../actions'
+import {useStateValue} from '../hooks/useStateValue'
 
 export const LoginForm = () => {
+    const [,dispatch] = useStateValue()
+
     const [userInput, setUserInput] = useState({
         username: '',
         passOne: '',
@@ -23,6 +27,7 @@ export const LoginForm = () => {
         e.preventDefault();
         let validated = validateData();
         if (validated) {
+            login(dispatch, userInput)
         }
     };
 

@@ -13,7 +13,7 @@ user should be of object type {
 }
 */
 
-export const loginAction = (dispatch, user) => {
+export const login = (dispatch, user) => {
     dispatch({ type: IS_LOGGING_IN });
     axiosInstance()
         .post('/api/login', user)
