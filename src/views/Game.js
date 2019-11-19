@@ -114,7 +114,7 @@ export const Game = () => {
     }, []);
 
     
-    console.log(game)
+    console.log(map, game)
   return (
     <StyledGame>
       <Map>
