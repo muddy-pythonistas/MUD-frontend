@@ -5,8 +5,8 @@ import { Login,SignUp } from './views';
 function App() {
     return (
         <div className='App'>
-            <Route exact to='/login' component={Login} />
-            <Route exact to='/signup' component={SignUp} />
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={SignUp} />
         </div>
     );
 }
