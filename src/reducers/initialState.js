@@ -21,7 +21,7 @@ export const initialState = {
     },
     map: {
         isLoading: false,
-        map: [],
+        rooms: [],
         errorMessage: ''
     },
 };

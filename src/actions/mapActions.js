@@ -7,10 +7,10 @@ export const MAP_ERROR = 'MAP_ERROR';
 export const getMap = dispatch => {
     dispatch({ type: GET_MAP });
     axiosWithAuth()
-        .get('/api/adv/room/')
+        .get('/api/adv/rooms/')
         .then(res => {
-            console.log(res); //need to see how the data comes back
-            dispatch({ type: MAP_SUCCESS, payload: res });
+            let rooms = JSON.parse(res.data.rooms)
+            dispatch({ type: MAP_SUCCESS, payload: rooms });
         })
         .catch(err => {
             console.log('error', err.response);

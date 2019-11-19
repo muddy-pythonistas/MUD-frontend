@@ -4,7 +4,7 @@ import { GET_MAP, MAP_ERROR, MAP_SUCCESS } from '../actions';
 State shape:
 map: {
         isLoading: false,
-        map: [],
+        rooms: [],
         errorMessage: ''
     },
 */
@@ -21,7 +21,7 @@ export const mapReducer = (state, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                map: payload,
+                rooms: payload,
                 errorMessage: '',
             };
         case MAP_ERROR:
