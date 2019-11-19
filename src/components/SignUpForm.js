@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 
-export const LoginForm = () => {
+export const SignUpForm = () => {
     const [userInput, setUserInput] = useState({
         username: '',
         passOne: '',
+        passTwo: '',
     });
 
     const [userErrors, setUserErrors] = useState({
         username: '',
         passOne: '',
+        passTwo: '',
     });
 
     const handleChange = e => {
@@ -28,8 +30,9 @@ export const LoginForm = () => {
 
     const validateData = () => {
         requiredFields();
-        let errorsPresent = checkForErrors();
-        return errorsPresent;
+        checkPasswords()
+        let errorsPresent = checkForErrors()
+        return errorsPresent
     };
 
     const requiredFields = () => {
@@ -45,6 +48,33 @@ export const LoginForm = () => {
         }
     };
 
+    const checkPasswords = () => {
+        let passTest = /^(?=.*\d).{8}/.test(userInput.passOne);
+        if (!passTest) {
+            setUserErrors(prevState => ({
+                ...prevState,
+                passOne:
+                    'Password must be at least 8 characters with one number.',
+            }));
+            setUserInput(prevState => ({
+                ...prevState,
+                passOne: '',
+                passTwo: '',
+            }));
+        }
+
+        if (userInput.passOne !== userInput.passTwo) {
+            setUserErrors(prevState => ({
+                ...prevState,
+                passTwo: 'Your passwords must match. Please try again.',
+            }));
+            setUserInput(prevState => ({
+                ...prevState,
+                passOne: '',
+                passTwo: '',
+            }));
+        }
+    };
     const checkForErrors = () => {
         let errors = 0;
         for (let key in userErrors) {
@@ -77,6 +107,16 @@ export const LoginForm = () => {
                     onChange={handleChange}
                 />
                 <span>{userErrors.passOne}</span>
+            </label>
+            <label>
+                Confirm Password:
+                <input
+                    name='passTwo'
+                    type='password'
+                    value={userInput.passTwo}
+                    onChange={handleChange}
+                />
+                <span>{userErrors.passTwo}</span>
             </label>
             <input type='submit' onSubmit={handleSubmit} />
         </form>

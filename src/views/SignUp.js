@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+import {SignUpForm} from '../components'
 
 export const SignUp = () => {
     return (
-        <div>
-            
-        </div>
-    )
-}
+        <SignUpContainer>
+            <SignUpForm />
+        </SignUpContainer>
+    );
+};
+
+const SignUpContainer = styled.div``;

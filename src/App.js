@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Login } from './views';
+import { Login,SignUp } from './views';
 
 function App() {
     return (
         <div className='App'>
-            <Route exact to='login' component={Login} />
+            <Route exact to='/login' component={Login} />
+            <Route exact to='/signup' component={SignUp} />
         </div>
     );
 }
