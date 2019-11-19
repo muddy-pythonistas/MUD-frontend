@@ -4,7 +4,7 @@ export const GET_MAP = 'GET_MAP';
 export const MAP_SUCCESS = 'MAP_SUCCESS';
 export const MAP_ERROR = 'MAP_ERROR';
 
-export const gameInit = dispatch => {
+export const getMap = dispatch => {
     dispatch({ type: GET_MAP });
     axiosWithAuth()
         .get('/api/adv/room/')

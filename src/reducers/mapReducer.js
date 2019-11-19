@@ -1,33 +1,30 @@
-import {
-    IS_SIGNING_UP,
-    SIGNUP_SUCCESS,
-    SIGNUP_ERROR,
-} from '../actions';
+import { GET_MAP, MAP_ERROR, MAP_SUCCESS } from '../actions';
 
 /*
 State shape:
-signUp:{
+map: {
         isLoading: false,
-        isSignedUp: false,
+        map: [],
         errorMessage: ''
     },
 */
 
-export const signUpReducer = (state, { type, payload }) => {
+export const mapReducer = (state, { type, payload }) => {
     switch (type) {
-        case IS_SIGNING_UP:
+        case GET_MAP:
             return {
                 ...state,
                 isLoading: true,
                 errorMessage: '',
             };
-        case SIGNUP_SUCCESS:
+        case MAP_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                isSignedUp: true,
+                map: payload,
+                errorMessage: '',
             };
-        case SIGNUP_ERROR:
+        case MAP_ERROR:
             return {
                 ...state,
                 isLoading: false,
