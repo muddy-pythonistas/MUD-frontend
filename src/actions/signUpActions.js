@@ -17,7 +17,7 @@ export const signUp = (dispatch, user) => {
     axiosInstance()
         .post('/api/registration/', user)
         .then(res => {
-            console.log(res); //need to see how token comes back
+            localStorage.setItem('token', res.data.key);
             dispatch({ type: SIGNUP_SUCCESS });
         })
         .catch(err => {

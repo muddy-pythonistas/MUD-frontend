@@ -1,15 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Login,SignUp } from './views';
-
-import { Game } from './views';
+import { Login, SignUp, Game } from './views';
+import { PrivateRoute } from './utils/PrivateRoute';
 
 function App() {
     return (
         <div className='App'>
-            <Route path='/login' component={Login} />
+            <Route exact path='/' component={Login} />
             <Route path='/signup' component={SignUp} />
-            <Route path='/game' component={Game} />
+            <PrivateRoute path='/game' component={Game} redirectURL='/' />
         </div>
     );
 }

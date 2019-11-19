@@ -16,9 +16,10 @@ game: {
     isLoading: false,
     uuid: '',
     name: '',
-    roomTitle: '',
-    roomDescription: '',
-    playersInRoom: [],
+    title: '',
+    description: '',
+    players: [],
+    error_msg: '',
     errorMessage: ''
 }
 */
@@ -26,40 +27,28 @@ game: {
 export const gameReducer = (state, { type, payload }) => {
     switch (type) {
         case START_INIT:
-            return {
-                ...state,
-            };
-        case INIT_SUCCESS:
-            return {
-                ...state,
-            };
-        case INIT_ERROR:
-            return {
-                ...state,
-            };
         case START_MOVE:
-            return {
-                ...state,
-            };
-        case MOVE_SUCCESS:
-            return {
-                ...state,
-            };
-        case MOVE_ERROR:
-            return {
-                ...state,
-            };
         case START_SAY:
             return {
                 ...state,
+                isLoading: true,
+                errorMessage: '',
             };
+        case INIT_SUCCESS:
+        case MOVE_SUCCESS:
         case SAY_SUCCESS:
             return {
                 ...state,
+                isLoading: false,
+                ...payload,
             };
+        case INIT_ERROR:
+        case MOVE_ERROR:
         case SAY_ERROR:
             return {
                 ...state,
+                isLoading: false,
+                errorMessage: payload,
             };
         default:
             return state;

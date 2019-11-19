@@ -13,14 +13,15 @@ export const initialState = {
         isLoading: false,
         uuid: '',
         name: '',
-        roomTitle: '',
-        roomDescription: '',
-        playersInRoom: [],
-        errorMessage: ''
+        title: '',
+        description: '',
+        players: [],
+        error_msg: '', //comes from the game
+        errorMessage: '' //comes from the server
     },
     map: {
         isLoading: false,
-        map: [],
+        rooms: [],
         errorMessage: ''
     },
 };

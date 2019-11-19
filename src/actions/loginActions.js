@@ -18,10 +18,8 @@ export const login = (dispatch, user) => {
     axiosInstance()
         .post('/api/login/', user)
         .then(res => {
-            console.log(res) //not sure if/how we get token here
-            dispatch({ type: LOGIN_SUCCESS, });
-            //window.localStorage.setItem('token', res.data.token);
-            //window.localStorage.setItem('user', user.username);
+            dispatch({ type: LOGIN_SUCCESS });
+            localStorage.setItem('token', res.data.key);
         })
         .catch(err => {
             console.log(err) //do we get an error?
@@ -31,7 +29,5 @@ export const login = (dispatch, user) => {
 
 export const logout = dispatch => {
     dispatch({ type: LOGOUT });
-    //Need to figure out if we are using local storage
-    //window.localStorage.setItem('token', '');
-    //window.localStorage.setItem('user', '');
+    localStorage.setItem('token', '');
 };

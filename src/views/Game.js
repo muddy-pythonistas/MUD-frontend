@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Sidebar, Tile } from '../components';
 
 import { useStateValue } from '../hooks/useStateValue';
+import { getMap, gameInit } from '../actions'
 
 const testTiles = [
   {
@@ -105,6 +106,15 @@ const testTiles = [
 ];
 
 export const Game = () => {
+    const [{map, game}, dispatch] = useStateValue()
+
+    useEffect(() => {
+        getMap(dispatch)
+        gameInit(dispatch)
+    }, []);
+
+    
+    console.log(game)
   return (
     <StyledGame>
       <Map>
