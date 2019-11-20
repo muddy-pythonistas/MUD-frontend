@@ -16,6 +16,6 @@ const StyledPlayer = styled.div`
   height: 32px;
 
   position: absolute;
-  top: ${props => props.y_coord * 128 + 48}px;
-  left: ${props => props.x_coord * 128 + 48}px;
+  top: ${props => props.y_coord%5 * 128 + 48}px;
+  left: ${props => props.x_coord%5 * 128 + 48}px;
 `;
