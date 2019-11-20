@@ -15,15 +15,16 @@ user should be of object type {
 
 export const login = (dispatch, user) => {
     dispatch({ type: IS_LOGGING_IN });
-    axiosInstance()
+    return axiosInstance()
         .post('/api/login/', user)
         .then(res => {
             dispatch({ type: LOGIN_SUCCESS });
             localStorage.setItem('token', res.data.key);
+            return true
         })
         .catch(err => {
-            console.log(err) //do we get an error?
-            dispatch({ type: LOGIN_ERROR });
+            console.log(err.response)
+            dispatch({ type: LOGIN_ERROR, payload: err.response.data });
         });
 };
 

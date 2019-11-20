@@ -18,18 +18,37 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const theme = {
-  spriteSize: 16,
-  tileSize: 4
+    spriteSize: 16,
+    tileSize: 4,
+    borderRadius: '4px',
+    titleFont: 'Orbitron, sans-serif',
+    bodyFont: 'Economica, sans-serif;',
+    white: '#fff',
+    errorRed: '#A50203',
+    primary0: '#DEE2E3',
+    primary1: '#AFBDBE', //matches tile color
+    primary2: '#7E9698',
+    primary3: '#5B7F83',
+    accent0: '#E3E4E7',
+    accent1: '#BABEC9',
+    accent2: '#8F96A9',
+    accent3: '#697491',
+    tinyFont: '1.2rem',
+    smallFont: '1.5rem',
+    mediumFont: '1.8rem',
+    largeFont: '2.2rem',
+    hugeFont: '3.0rem',
+    headerSize: '6.0rem',
 };
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <Router>
-      <StateProvider initialState={initialState} reducer={rootReducer}>
-        <App />
-      </StateProvider>
-    </Router>
-  </ThemeProvider>,
-  document.getElementById('root')
+    <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Router>
+            <StateProvider initialState={initialState} reducer={rootReducer}>
+                <App />
+            </StateProvider>
+        </Router>
+    </ThemeProvider>,
+    document.getElementById('root')
 );

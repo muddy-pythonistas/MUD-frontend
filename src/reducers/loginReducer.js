@@ -1,11 +1,11 @@
-import { IS_LOGGING_IN, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT } from '../actions';
+import { IS_LOGGING_IN, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, CLEAR_ERRORS } from '../actions';
 
 /*
 State shape:
 login: {
         isLoading: false,
         isLoggedIn: false,
-        errorMessage: '',
+        errorMessage: {},
     },
 */
 
@@ -27,13 +27,18 @@ export const loginReducer = (state, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                errorMessage: payload,
+                errorMessage: {...payload},
             };
         case LOGOUT:
             return {
                 ...state,
                 isLoggedIn: false,
             };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                errorMessage: {}
+            }
         default:
             return state;
     }
