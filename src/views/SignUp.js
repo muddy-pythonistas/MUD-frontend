@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { WelcomeHeader } from '../components';
-import SignUpForm from '../components/SignUpForm'
+import SignUpForm from '../components/SignUpForm';
+import { clearErrors } from '../actions';
+import {useStateValue} from '../hooks/useStateValue'
 
 export const SignUp = () => {
+    const [,dispatch] = useStateValue()
+
+    useEffect(() => {
+        clearErrors(dispatch);
+    }, []);
+
     return (
         <>
             <WelcomeHeader />

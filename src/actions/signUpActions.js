@@ -26,3 +26,8 @@ export const signUp = (dispatch, user) => {
             dispatch({ type: SIGNUP_ERROR, payload: err.response.data });
         });
 };
+
+export const CLEAR_ERRORS = "CLEAR_ERRORS"
+export const clearErrors = (dispatch) => {
+    dispatch({type: CLEAR_ERRORS})
+}
