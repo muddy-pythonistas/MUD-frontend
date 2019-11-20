@@ -35,7 +35,6 @@ export const Tile = ({ n_to, e_to, s_to, w_to, sprite, ...rest }) => {
           {w_to ? <FloorTile tile={sprite} /> : <WestWall />}
           <FloorTile tile={sprite} />
           {e_to ? <FloorTile tile={sprite} /> : <EastWall />}
-
           {s_to ? (
             w_to ? (
               <CornerNE />
