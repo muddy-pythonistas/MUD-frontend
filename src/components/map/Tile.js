@@ -8,7 +8,7 @@ import {
 } from './assets';
 
 export const Tile = ({ n_to, e_to, s_to, w_to, ...rest }) => {
-  if (n_to || e_to || s_to || w_to) {
+    if (n_to || e_to || s_to || w_to) {
     return (
       <TileContainer>
         <FullTileFloor />

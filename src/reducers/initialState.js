@@ -17,7 +17,8 @@ export const initialState = {
         description: '',
         players: [],
         error_msg: '', //comes from the game
-        errorMessage: '' //comes from the server
+        errorMessage: '', //comes from the server
+        message: '' //sent by player
     },
     map: {
         isLoading: false,

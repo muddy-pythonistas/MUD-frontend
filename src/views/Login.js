@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import {LoginForm} from '../components'
+import { LoginForm, WelcomeHeader } from '../components';
+import { SignUpContainer } from '../views/SignUp';
 
 export const Login = () => {
     return (
-        <LoginContainer>
-            <LoginForm />
-        </LoginContainer>
+        <>
+            <WelcomeHeader />
+            <LoginContainer>
+                <LoginForm />
+            </LoginContainer>
+        </>
     );
 };
 
-const LoginContainer = styled.div``;
+const LoginContainer = styled(SignUpContainer)``;

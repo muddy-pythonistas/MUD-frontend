@@ -1,13 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import {SignUpForm} from '../components'
+import { SignUpForm, WelcomeHeader } from '../components';
 
 export const SignUp = () => {
     return (
-        <SignUpContainer>
-            <SignUpForm />
-        </SignUpContainer>
+        <>
+            <WelcomeHeader />
+            <SignUpContainer>
+                <SignUpForm />
+            </SignUpContainer>
+        </>
     );
 };
 
-const SignUpContainer = styled.div``;
+export const SignUpContainer = styled.div`
+    background: ${({ theme }) => theme.white};
+    border-radius: ${({ theme }) => theme.borderRadius};
+    min-width: 500px;
+    min-height: 200px;
+`;

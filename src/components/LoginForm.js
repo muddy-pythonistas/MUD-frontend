@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import {login} from '../actions'
-import {useStateValue} from '../hooks/useStateValue'
+import { Link } from 'react-router-dom';
+import { login } from '../actions';
+import { useStateValue } from '../hooks/useStateValue';
+import {
+    FormContainer,
+    FormLabel,
+    FormInput,
+    SubmitButton,
+    InfoLink,
+    ErrorText
+} from './SignUpForm';
 
 export const LoginForm = () => {
-    const [,dispatch] = useStateValue()
+    const [, dispatch] = useStateValue();
 
     const [userInput, setUserInput] = useState({
         username: '',
@@ -21,13 +30,17 @@ export const LoginForm = () => {
             ...prevState,
             [e.target.name]: e.target.value,
         }));
+        setUserErrors(prevState => ({
+            ...prevState,
+            [e.target.name]: ''
+        }))
     };
 
     const handleSubmit = e => {
         e.preventDefault();
         let validated = validateData();
         if (validated) {
-            login(dispatch, userInput)
+            login(dispatch, userInput);
         }
     };
 
@@ -62,28 +75,34 @@ export const LoginForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
+        <FormContainer onSubmit={handleSubmit}>
+            <FormLabel>
                 Username:
-                <input
+                <FormInput
                     name='username'
                     type='text'
                     value={userInput.username}
                     onChange={handleChange}
+                    error = {userErrors.username}
                 />
-                <span>{userErrors.username}</span>
-            </label>
-            <label>
+                <ErrorText>{userErrors.username}</ErrorText>
+            </FormLabel>
+            <FormLabel>
                 Password:
-                <input
+                <FormInput
                     name='password'
                     type='password'
                     value={userInput.password}
                     onChange={handleChange}
+                    error = {userErrors.password}
                 />
-                <span>{userErrors.password}</span>
-            </label>
-            <input type='submit' onSubmit={handleSubmit} />
-        </form>
+                <ErrorText>{userErrors.password}</ErrorText>
+            </FormLabel>
+            <SubmitButton type='submit' onSubmit={handleSubmit} />
+            <InfoLink>
+                Don't have an account yet?{' '}
+                <Link to='/signup'>Sign up here!</Link>
+            </InfoLink>
+        </FormContainer>
     );
 };

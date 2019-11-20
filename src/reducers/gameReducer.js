@@ -21,6 +21,7 @@ game: {
     players: [],
     error_msg: '',
     errorMessage: ''
+    message: ''
 }
 */
 
