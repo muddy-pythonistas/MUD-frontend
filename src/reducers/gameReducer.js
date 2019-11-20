@@ -16,11 +16,14 @@ game: {
     isLoading: false,
     uuid: '',
     name: '',
+    x_coord: '',
+    y_coord: '',
     title: '',
     description: '',
     players: [],
     error_msg: '',
     errorMessage: ''
+    message: ''
 }
 */
 

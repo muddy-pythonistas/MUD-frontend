@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import {LoginForm} from '../components'
+import { WelcomeHeader } from '../components';
+import LoginForm from '../components/LoginForm';
+import { SignUpContainer } from '../views/SignUp';
+import { clearErrors } from '../actions'
+import {useStateValue} from '../hooks/useStateValue'
 
 export const Login = () => {
+    const [,dispatch] = useStateValue()
+
+    useEffect(() => {
+        clearErrors(dispatch)
+    }, []);
+
     return (
-        <LoginContainer>
-            <LoginForm />
-        </LoginContainer>
+        <>
+            <WelcomeHeader />
+            <LoginContainer>
+                <LoginForm />
+            </LoginContainer>
+        </>
     );
 };
 
-const LoginContainer = styled.div``;
+const LoginContainer = styled(SignUpContainer)``;

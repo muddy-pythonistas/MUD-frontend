@@ -160,14 +160,16 @@ const testTiles = [
 ];
 
 export const Game = () => {
-  const [{ map, game }, dispatch] = useStateValue();
+    const [{ map, game }, dispatch] = useStateValue();
 
-  useEffect(() => {
-    getMap(dispatch);
-    gameInit(dispatch);
-  }, []);
+    useEffect(() => {
+        getMap(dispatch);
+        gameInit(dispatch);
+    }, []);
 
-  console.log(map, game);
+    let sortedMap = map.rooms
+        .sort((a, b) => a.x_coord - b.x_coord)
+        .sort((a, b) => a.y_coord - b.y_coord);
 
   return (
     <StyledGame>
@@ -179,9 +181,9 @@ export const Game = () => {
 };
 
 const StyledGame = styled.div`
-  width: 712px;
-  position: relative;
+    width: 712px;
+    position: relative;
 
-  display: grid;
-  grid-template-columns: 4fr 1fr;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
 `;
