@@ -1,10 +1,163 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Sidebar, Tile } from '../components';
+import { Sidebar, Map } from '../components';
 
 import { useStateValue } from '../hooks/useStateValue';
 import { getMap, gameInit } from '../actions';
+
+const testTiles = [
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 0
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 0,
+    s_to: 1,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 1,
+    w_to: 0
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 1,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 1,
+    e_to: 1,
+    s_to: 0,
+    w_to: 0
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 1,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 0,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 0,
+    s_to: 0,
+    w_to: 0
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 0
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 1,
+    e_to: 0,
+    s_to: 1,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 0,
+    s_to: 0,
+    w_to: 0
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 0
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  },
+  {
+    n_to: 1,
+    e_to: 1,
+    s_to: 1,
+    w_to: 1
+  },
+  {
+    n_to: 0,
+    e_to: 1,
+    s_to: 0,
+    w_to: 1
+  }
+];
 
 export const Game = () => {
     const [{ map, game }, dispatch] = useStateValue();
@@ -21,13 +174,8 @@ export const Game = () => {
     console.log(game)
     return (
         <StyledGame>
-            <Map>
-                {sortedMap.map(tile => (
-                    <Tile {...tile} />
-                ))}
-            </Map>
+      <Map rooms={sortedMap} />
             <Sidebar />
-        </StyledGame>
     );
 };
 
@@ -36,13 +184,4 @@ const StyledGame = styled.div`
 
     display: grid;
     grid-template-columns: 4fr 1fr;
-`;
-
-const Map = styled.div`
-    width: 512px;
-    height: 512px;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
 `;

@@ -1,17 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  floorTile,
-  cornerCW_16x32,
-  horzWall_16x32,
-  vertWall_16x16
-} from './assets';
+import { cornerCW_16x32, horzWall_16x32, vertWall_16x16 } from './assets';
 
-export const Tile = ({ n_to, e_to, s_to, w_to, ...rest }) => {
-    if (n_to || e_to || s_to || w_to) {
+
+export const Tile = ({ n_to, e_to, s_to, w_to, sprite, ...rest }) => {
+  if (n_to || e_to || s_to || w_to) {
     return (
       <TileContainer>
-        <FullTileFloor />
+        <FullTileFloor tile={sprite} />
         <TileWallGrid>
           {n_to ? (
             w_to ? (
@@ -24,7 +20,7 @@ export const Tile = ({ n_to, e_to, s_to, w_to, ...rest }) => {
           ) : (
             <CornerNW />
           )}
-          {n_to ? <FloorTile /> : <NorthWall />}
+          {n_to ? <FloorTile tile={sprite} /> : <NorthWall />}
           {n_to ? (
             e_to ? (
               <CornerSW />
@@ -37,10 +33,9 @@ export const Tile = ({ n_to, e_to, s_to, w_to, ...rest }) => {
             <CornerNE />
           )}
 
-          {w_to ? <FloorTile /> : <WestWall />}
-          <FloorTile />
-          {e_to ? <FloorTile /> : <EastWall />}
-            
+          {w_to ? <FloorTile tile={sprite} /> : <WestWall />}
+          <FloorTile tile={sprite} />
+          {e_to ? <FloorTile tile={sprite} /> : <EastWall />}
           {s_to ? (
             w_to ? (
               <CornerNE />
@@ -52,7 +47,7 @@ export const Tile = ({ n_to, e_to, s_to, w_to, ...rest }) => {
           ) : (
             <CornerSW />
           )}
-          {s_to ? <FloorTile /> : <SouthWall />}
+          {s_to ? <FloorTile tile={sprite} /> : <SouthWall />}
           {s_to ? (
             e_to ? (
               <CornerNW />
@@ -73,8 +68,9 @@ export const Tile = ({ n_to, e_to, s_to, w_to, ...rest }) => {
 };
 
 const FloorTile = styled.div`
-  background-image: url(${floorTile});
+  background-image: url(${props => props.tile});
   background-repeat: repeat;
+  background-size: 14px;
 `;
 
 const CornerSprite = styled.div`
@@ -128,7 +124,7 @@ const TileWallGrid = styled.div`
 
 const FullTileFloor = styled.div`
   position: absolute;
-  background-image: url(${floorTile});
+  background-image: url(${props => props.tile});
   background-repeat: repeat;
   z-index: -1;
   top: 2px;
