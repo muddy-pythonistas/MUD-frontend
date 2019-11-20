@@ -18,6 +18,7 @@ export const Game = () => {
         .sort((a, b) => a.x_coord - b.x_coord)
         .sort((a, b) => a.y_coord - b.y_coord);
 
+    console.log(game)
     return (
         <StyledGame>
             <Map>

@@ -14,6 +14,8 @@ export const initialState = {
         uuid: '',
         name: '',
         title: '',
+        x_coord: '',
+        y_coord: '',
         description: '',
         players: [],
         error_msg: '', //comes from the game
