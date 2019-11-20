@@ -1,13 +1,13 @@
 export const initialState = {
-    login: {
+    loginState: {
         isLoading: false,
         isLoggedIn: false,
-        errorMessage: ''
+        errorMessage: {}
     },
-    signUp: {
+    signUpState: {
         isLoading: false,
         isSignedUp: false,
-        errorMessage: ''
+        errorMessage: {}
     },
     game: {
         isLoading: false,

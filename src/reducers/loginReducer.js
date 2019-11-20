@@ -5,7 +5,7 @@ State shape:
 login: {
         isLoading: false,
         isLoggedIn: false,
-        errorMessage: '',
+        errorMessage: {},
     },
 */
 
@@ -27,7 +27,7 @@ export const loginReducer = (state, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                errorMessage: payload,
+                errorMessage: {...payload},
             };
         case LOGOUT:
             return {

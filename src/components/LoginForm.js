@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import { login } from '../actions';
 import { useStateValue } from '../hooks/useStateValue';
 import {
@@ -8,11 +8,11 @@ import {
     FormInput,
     SubmitButton,
     InfoLink,
-    ErrorText
+    ErrorText,
 } from './SignUpForm';
 
-export const LoginForm = () => {
-    const [, dispatch] = useStateValue();
+const LoginForm = props => {
+    const [{ loginState }, dispatch] = useStateValue();
 
     const [userInput, setUserInput] = useState({
         username: '',
@@ -24,6 +24,21 @@ export const LoginForm = () => {
         password: '',
     });
 
+    useEffect(() => {
+        for (let key in loginState.errorMessage) {
+            setUserErrors(prevState => ({
+                ...prevState,
+                username: loginState.errorMessage[key],
+                password: loginState.errorMessage[key],
+            }));
+            setUserInput(prevState => ({
+                ...prevState,
+                username: '',
+                password: ''
+            }));
+        }
+    }, [loginState.errorMessage]);
+
     const handleChange = e => {
         e.persist();
         setUserInput(prevState => ({
@@ -32,15 +47,15 @@ export const LoginForm = () => {
         }));
         setUserErrors(prevState => ({
             ...prevState,
-            [e.target.name]: ''
-        }))
+            [e.target.name]: '',
+        }));
     };
 
     const handleSubmit = e => {
         e.preventDefault();
         let validated = validateData();
         if (validated) {
-            login(dispatch, userInput);
+            login(dispatch, userInput).then(res => props.history.push('/game'));
         }
     };
 
@@ -83,7 +98,7 @@ export const LoginForm = () => {
                     type='text'
                     value={userInput.username}
                     onChange={handleChange}
-                    error = {userErrors.username}
+                    error={userErrors.username}
                 />
                 <ErrorText>{userErrors.username}</ErrorText>
             </FormLabel>
@@ -94,7 +109,7 @@ export const LoginForm = () => {
                     type='password'
                     value={userInput.password}
                     onChange={handleChange}
-                    error = {userErrors.password}
+                    error={userErrors.password}
                 />
                 <ErrorText>{userErrors.password}</ErrorText>
             </FormLabel>
@@ -106,3 +121,5 @@ export const LoginForm = () => {
         </FormContainer>
     );
 };
+
+export default withRouter(LoginForm);

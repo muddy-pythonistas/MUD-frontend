@@ -9,7 +9,7 @@ State shape:
 signUp:{
         isLoading: false,
         isSignedUp: false,
-        errorMessage: ''
+        errorMessage: {}
     },
 */
 
@@ -31,7 +31,7 @@ export const signUpReducer = (state, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                errorMessage: payload,
+                errorMessage: {...payload},
             };
         default:
             return state;

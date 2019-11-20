@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import { signUp } from '../actions';
 import { useStateValue } from '../hooks/useStateValue';
 import styled from 'styled-components';
 
-export const SignUpForm = () => {
-    const [, dispatch] = useStateValue();
+const SignUpForm = props => {
+    const [{ signUpState }, dispatch] = useStateValue();
 
     const [userInput, setUserInput] = useState({
         username: '',
@@ -19,6 +19,25 @@ export const SignUpForm = () => {
         password2: '',
     });
 
+    useEffect(() => {
+        for (let key in signUpState.errorMessage) {
+            setUserErrors(prevState => ({
+                ...prevState,
+                [key]: signUpState.errorMessage[key],
+            }));
+            setUserInput(prevState => ({
+                ...prevState,
+                [key]: '',
+            }));
+            if (key === 'password1') {
+                setUserInput(prevState => ({
+                    ...prevState,
+                    password2: '',
+                }));
+            }
+        }
+    }, [signUpState.errorMessage]);
+
     const handleChange = e => {
         e.persist();
         setUserInput(prevState => ({
@@ -27,15 +46,17 @@ export const SignUpForm = () => {
         }));
         setUserErrors(prevState => ({
             ...prevState,
-            [e.target.name]: ''
-        }))
+            [e.target.name]: '',
+        }));
     };
 
     const handleSubmit = e => {
         e.preventDefault();
         let validated = validateData();
         if (validated) {
-            signUp(dispatch, userInput);
+            signUp(dispatch, userInput).then(res => {
+                if (res) props.history.push('/game');
+            });
         }
     };
 
@@ -147,6 +168,8 @@ export const SignUpForm = () => {
         </FormContainer>
     );
 };
+
+export default withRouter(SignUpForm);
 
 export const FormContainer = styled.form`
     display: flex;

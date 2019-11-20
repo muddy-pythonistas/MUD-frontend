@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LoginForm, WelcomeHeader } from '../components';
+import { WelcomeHeader } from '../components';
+import LoginForm from '../components/LoginForm'
 import { SignUpContainer } from '../views/SignUp';
 
 export const Login = () => {
