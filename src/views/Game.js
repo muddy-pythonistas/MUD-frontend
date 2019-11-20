@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Sidebar, Map } from '../components';
+import { Sidebar, Map, Player } from '../components';
 
 import { useStateValue } from '../hooks/useStateValue';
 import { getMap, gameInit } from '../actions';
@@ -171,16 +171,18 @@ export const Game = () => {
         .sort((a, b) => a.x_coord - b.x_coord)
         .sort((a, b) => a.y_coord - b.y_coord);
 
-    console.log(game)
-    return (
-        <StyledGame>
-      <Map rooms={sortedMap} />
-            <Sidebar />
-    );
+  return (
+    <StyledGame>
+      <Map rooms={testTiles} />
+      <Player />
+      <Sidebar />
+    </StyledGame>
+  );
 };
 
 const StyledGame = styled.div`
     width: 712px;
+    position: relative;
 
     display: grid;
     grid-template-columns: 4fr 1fr;

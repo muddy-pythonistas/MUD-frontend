@@ -1,15 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { dpadSpriteN, dpadSpriteE, dpadSpriteS, dpadSpriteW } from './assets';
+import { move } from '../../actions';
+import { useStateValue } from '../../hooks/useStateValue';
 
 export const Dpad = () => {
+  const [game, dispatch] = useStateValue();
   return (
     <DpadContainer>
       <StyledDpad>
-        <NorthButton />
-        <EastButton />
-        <SouthButton />
-        <WestButton />
+        <NorthButton onClick={() => move(dispatch, { direction: 'n' })} />
+        <EastButton onClick={() => move(dispatch, { direction: 'e' })} />
+        <SouthButton onClick={() => move(dispatch, { direction: 's' })} />
+        <WestButton onClick={() => move(dispatch, { direction: 'w' })} />
       </StyledDpad>
     </DpadContainer>
   );

@@ -18,8 +18,8 @@ export const Map = ({ rooms }) => {
 };
 
 const StyledMap = styled.div`
-  width: 600px;
-  height: 600px;
+  width: 640px;
+  height: 640px;
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);

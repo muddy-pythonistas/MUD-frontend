@@ -27,4 +27,8 @@ export const initialState = {
         rooms: [],
         errorMessage: ''
     },
+    player: {
+        currentRoom: 0,
+        lastMovedDirection: 's'
+    }
 };
