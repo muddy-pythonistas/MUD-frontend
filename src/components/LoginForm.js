@@ -28,14 +28,23 @@ const LoginForm = props => {
         for (let key in loginState.errorMessage) {
             setUserErrors(prevState => ({
                 ...prevState,
-                username: loginState.errorMessage[key],
-                password: loginState.errorMessage[key],
+                [key]: loginState.errorMessage[key],
             }));
             setUserInput(prevState => ({
                 ...prevState,
-                username: '',
-                password: ''
+                [key]: '',
             }));
+            if (key === 'non_field_errors') {
+                setUserErrors(prevState => ({
+                    ...prevState,
+                    username: loginState.errorMessage[key],
+                }));
+                setUserInput(prevState => ({
+                    ...prevState,
+                    username: '',
+                    password: '',
+                }));
+            }
         }
     }, [loginState.errorMessage]);
 
@@ -53,40 +62,9 @@ const LoginForm = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        let validated = validateData();
-        if (validated) {
-            login(dispatch, userInput).then(res => props.history.push('/game'));
-        }
-    };
-
-    const validateData = () => {
-        requiredFields();
-        let errorsPresent = checkForErrors();
-        return errorsPresent;
-    };
-
-    const requiredFields = () => {
-        for (let key in userErrors) {
-            if (userInput[key]) {
-                continue;
-            } else {
-                setUserErrors(prevState => ({
-                    ...prevState,
-                    [key]: 'This field is required.',
-                }));
-            }
-        }
-    };
-
-    const checkForErrors = () => {
-        let errors = 0;
-        for (let key in userErrors) {
-            if (userErrors[key]) {
-                errors++;
-            }
-        }
-
-        return errors === 0;
+        login(dispatch, userInput).then(res => {
+            if (res) props.history.push('/game');
+        });
     };
 
     return (

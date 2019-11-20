@@ -35,6 +35,17 @@ const SignUpForm = props => {
                     password2: '',
                 }));
             }
+            if (key === 'non_field_errors') {
+                setUserErrors(prevState => ({
+                    ...prevState,
+                    password1: signUpState.errorMessage[key],
+                }));
+                setUserInput(prevState => ({
+                    ...prevState,
+                    password1: '',
+                    password2: '',
+                }));
+            }
         }
     }, [signUpState.errorMessage]);
 
@@ -52,78 +63,9 @@ const SignUpForm = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        let validated = validateData();
-        if (validated) {
-            signUp(dispatch, userInput).then(res => {
-                if (res) props.history.push('/game');
-            });
-        }
-    };
-
-    const validateData = async () => {
-        await checkPasswords();
-        await requiredFields();
-        let errorsPresent = await checkForErrors();
-        return errorsPresent;
-    };
-
-    const requiredFields = () => {
-        for (let key in userErrors) {
-            if (userInput[key]) {
-                continue;
-            } else {
-                setUserErrors(prevState => ({
-                    ...prevState,
-                    [key]: 'This field is required.',
-                }));
-            }
-        }
-        return;
-    };
-
-    const checkPasswords = () => {
-        let passTest = /^(?=.*\d).{8}/.test(userInput.password1);
-        if (!passTest) {
-            setUserErrors(prevState => ({
-                ...prevState,
-                password1:
-                    'Password must be at least 8 characters with one number.',
-            }));
-            setUserInput(prevState => ({
-                ...prevState,
-                password1: '',
-                password2: '',
-            }));
-        }
-
-        if (
-            userInput.password1 &&
-            userInput.password2 &&
-            userInput.password1 !== userInput.password2
-        ) {
-            setUserErrors(prevState => ({
-                ...prevState,
-                password1: 'Your passwords must match. Please try again.',
-                password2: 'Your passwords must match. Please try again.',
-            }));
-            setUserInput(prevState => ({
-                ...prevState,
-                password1: '',
-                password2: '',
-            }));
-        }
-        return;
-    };
-
-    const checkForErrors = () => {
-        let errors = 0;
-        for (let key in userErrors) {
-            if (userErrors[key]) {
-                errors++;
-            }
-        }
-
-        return errors === 0;
+        signUp(dispatch, userInput).then(res => {
+            if (res) props.history.push('/game');
+        });
     };
 
     return (
