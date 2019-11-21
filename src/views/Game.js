@@ -27,7 +27,6 @@ export const Game = () => {
 
   const subscribeToPusher = (uuid) => {
     const channel = pusher.subscribe(`p-channel-${uuid}`);
-    console.log(channel)
 
     channel.bind('broadcast', data => {
         addMessage(dispatch, data)

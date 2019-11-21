@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Tile } from './Tile';
 
 import { tileSprites } from './assets/floortiles';
-import { tsLiteralType } from '@babel/types';
 
 export const Map = ({ rooms, x, y }) => {
   const [coords, setCoords] = useState({

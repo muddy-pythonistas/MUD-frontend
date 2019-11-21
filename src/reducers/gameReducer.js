@@ -5,7 +5,6 @@ import {
   START_MOVE,
   MOVE_SUCCESS,
   MOVE_ERROR,
-  UPDATE_LOCAL_COORDS,
   LOCAL_MOVE,
   START_SAY,
   SAY_SUCCESS,
@@ -37,16 +36,19 @@ game: {
 export const gameReducer = (state, { type, payload }) => {
   switch (type) {
     case LOCAL_MOVE:
+        let direction = payload.direction
+        let change = {
+            n: { local_x: 0, local_y: -1 },
+            s: { local_x: 0, local_y: 1 },
+            e: { local_x: 1, local_y: 0 },
+            w: { local_x: -1, local_y: 0 },
+        }
       return {
         ...state,
         lastMovedDirection: payload.direction,
-        curr_room: payload.newRoom
-      };
-    case UPDATE_LOCAL_COORDS:
-      return {
-        ...state,
-        local_x: payload.x_coord,
-        local_y: payload.y_coord
+        curr_room: payload.newRoom,
+        local_x: state.local_x + change[direction].local_x,
+        local_y: state.local_y + change[direction].local_y,
       };
     case START_INIT:
     case START_MOVE:
