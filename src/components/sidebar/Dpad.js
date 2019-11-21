@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { dpadSpriteN, dpadSpriteE, dpadSpriteS, dpadSpriteW } from './assets';
 import { move } from '../../actions';
 import { useStateValue } from '../../hooks/useStateValue';
-// import { useKeyPress } from '../../hooks/useKeyPress';
 
 export const Dpad = () => {
   const [{ map, game }, dispatch] = useStateValue();
@@ -34,6 +33,8 @@ export const Dpad = () => {
     }
   };
 
+  // TODO: arrow key support
+  //
   // const handleUserKeyPress = useCallback(event => {
   //   const { key, keyCode } = event;
 
