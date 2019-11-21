@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useStateValue } from '../../hooks/useStateValue';
 
-import { classSprites_144 } from './assets';
+import { classSprites_288 } from './assets';
 import { sword, shield } from './assets/items';
 
 export const Info = () => {
@@ -71,8 +71,9 @@ const StyledInfo = styled.div`
 `;
 
 const ClassSprite = styled.div`
-  background-image: url(${classSprites_144});
+  background-image: url(${classSprites_288});
   background-repeat: no-repeat;
+  background-size: 576px 288px;
   background-position-x: ${props => props.xOffset};
   background-position-y: ${props => props.yOffset};
   margin: 16px;
