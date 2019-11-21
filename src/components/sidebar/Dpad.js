@@ -5,14 +5,41 @@ import { move } from '../../actions';
 import { useStateValue } from '../../hooks/useStateValue';
 
 export const Dpad = () => {
-  const [game, dispatch] = useStateValue();
+  const [{ map, game }, dispatch] = useStateValue();
+
+  const localMove = direction => {
+    const currentRoom = map.rooms.find(r => r.id === game.curr_room);
+
+    const checkMove = direction => {
+      switch (direction) {
+        case 'n':
+          return currentRoom.n_to;
+        case 'e':
+          return currentRoom.e_to;
+        case 's':
+          return currentRoom.s_to;
+        case 'w':
+          return currentRoom.w_to;
+        default:
+          return null;
+      }
+    };
+
+    const newRoom = checkMove(direction);
+    if (newRoom) {
+      move(dispatch, { direction: direction }, newRoom);
+    } else {
+      return null;
+    }
+  };
+
   return (
     <DpadContainer>
       <StyledDpad>
-        <NorthButton onClick={() => move(dispatch, { direction: 'n' })} />
-        <EastButton onClick={() => move(dispatch, { direction: 'e' })} />
-        <SouthButton onClick={() => move(dispatch, { direction: 's' })} />
-        <WestButton onClick={() => move(dispatch, { direction: 'w' })} />
+        <NorthButton onClick={() => localMove('n')} />
+        <EastButton onClick={() => localMove('e')} />
+        <SouthButton onClick={() => localMove('s')} />
+        <WestButton onClick={() => localMove('w')} />
       </StyledDpad>
     </DpadContainer>
   );
