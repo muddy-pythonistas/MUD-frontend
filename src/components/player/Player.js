@@ -46,6 +46,7 @@ const StyledPlayer = styled.div`
   background-repeat: no-repeat;
   background-position-x: ${props => props.xOffset};
   background-position-y: ${props => props.yOffset};
+  background-size: 128px 64px;
   width: 32px;
   height: 32px;
 
