@@ -24,7 +24,8 @@ export const initialState = {
     errorMessage: '', //comes from the server
     messages: [], //sent by player
     curr_room: 0,
-    lastMovedDirection: 's'
+    lastMovedDirection: 's',
+    items: []
   },
   map: {
     isLoading: false,
