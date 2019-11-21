@@ -1,15 +1,74 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { dpadSpriteN, dpadSpriteE, dpadSpriteS, dpadSpriteW } from './assets';
+import { move } from '../../actions';
+import { useStateValue } from '../../hooks/useStateValue';
 
 export const Dpad = () => {
+  const [{ map, game }, dispatch] = useStateValue();
+
+  const localMove = direction => {
+    const currentRoom = map.rooms.find(r => r.id === game.curr_room);
+
+    const checkMove = direction => {
+      switch (direction) {
+        case 'n':
+          return currentRoom.n_to;
+        case 'e':
+          return currentRoom.e_to;
+        case 's':
+          return currentRoom.s_to;
+        case 'w':
+          return currentRoom.w_to;
+        default:
+          return null;
+      }
+    };
+
+    const newRoom = checkMove(direction);
+    if (newRoom) {
+      move(dispatch, { direction: direction }, newRoom);
+    } else {
+      return null;
+    }
+  };
+
+  // TODO: arrow key support
+  //
+  // const handleUserKeyPress = useCallback(event => {
+  //   const { key, keyCode } = event;
+
+  //   switch (keyCode) {
+  //     case 37:
+  //       localMove('w');
+  //       break;
+  //     case 38:
+  //       localMove('n');
+  //       break;
+  //     case 39:
+  //       localMove('e');
+  //       break;
+  //     case 40:
+  //       localMove('s');
+  //       break;
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   window.addEventListener('keydown', handleUserKeyPress);
+
+  //   return () => {
+  //     window.removeEventListener('keydown', handleUserKeyPress);
+  //   };
+  // }, [handleUserKeyPress]);
+
   return (
     <DpadContainer>
       <StyledDpad>
-        <NorthButton />
-        <EastButton />
-        <SouthButton />
-        <WestButton />
+        <NorthButton onClick={() => localMove('n')} />
+        <EastButton onClick={() => localMove('e')} />
+        <SouthButton onClick={() => localMove('s')} />
+        <WestButton onClick={() => localMove('w')} />
       </StyledDpad>
     </DpadContainer>
   );
