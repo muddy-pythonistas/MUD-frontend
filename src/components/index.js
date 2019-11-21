@@ -4,4 +4,5 @@ export * from './map';
 export * from './sidebar';
 export * from './player';
 export * from './WelcomeHeader'
+export * from './info';
 export * from './chat';

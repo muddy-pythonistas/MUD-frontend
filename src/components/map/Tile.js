@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { cornerCW_16x32, horzWall_16x32, vertWall_16x16 } from './assets';
 
-
 export const Tile = ({ n_to, e_to, s_to, w_to, sprite, ...rest }) => {
   if (n_to || e_to || s_to || w_to) {
     return (
