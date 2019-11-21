@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Sidebar, Map, Player } from '../components';
+import { Sidebar, Map, Player, Chat } from '../components';
 
 import { useStateValue } from '../hooks/useStateValue';
 import { getMap, gameInit } from '../actions';
@@ -175,6 +175,7 @@ export const Game = () => {
             <Map rooms={sortedMap} x={game.x_coord} y={game.y_coord} />
             <Player />
             <Sidebar />
+            <Chat />
         </StyledGame>
     );
 };

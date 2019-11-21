@@ -39,12 +39,16 @@ export const gameReducer = (state, { type, payload }) => {
             };
         case INIT_SUCCESS:
         case MOVE_SUCCESS:
-        case SAY_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 ...payload,
             };
+        case SAY_SUCCESS:
+            return {
+                ...state,
+                isLoading: false
+            }
         case INIT_ERROR:
         case MOVE_ERROR:
         case SAY_ERROR:
