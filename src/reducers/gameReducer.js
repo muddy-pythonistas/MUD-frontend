@@ -9,7 +9,8 @@ import {
   LOCAL_MOVE,
   START_SAY,
   SAY_SUCCESS,
-  SAY_ERROR
+  SAY_ERROR,
+  ADD_MESSAGE
 } from '../actions';
 
 /*
@@ -71,6 +72,11 @@ export const gameReducer = (state, { type, payload }) => {
         isLoading: false,
         errorMessage: payload
       };
+    case ADD_MESSAGE:
+      return {
+        ...state,
+        messages: [...state.messages, payload]  
+      }
     default:
       return state;
   }
