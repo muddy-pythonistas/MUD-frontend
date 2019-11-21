@@ -24,6 +24,7 @@ game: {
     error_msg: '',
     errorMessage: ''
     message: ''
+    direction: '' 
 }
 */
 

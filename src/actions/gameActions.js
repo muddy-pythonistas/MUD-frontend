@@ -32,7 +32,7 @@ export const move = (dispatch, move) => {
     axiosWithAuth()
         .post('/api/adv/move/', move)
         .then(res => {
-            dispatch({ type: MOVE_SUCCESS, payload: res.data });
+            dispatch({ type: MOVE_SUCCESS, payload: {...res.data, ...move} });
         })
         .catch(err => {
             console.log('error', err.response);

@@ -20,7 +20,8 @@ export const initialState = {
         players: [],
         error_msg: '', //comes from the game
         errorMessage: '', //comes from the server
-        message: '' //sent by player
+        message: '', //sent by player
+        direction: '' //used to keep track of player image
     },
     map: {
         isLoading: false,
