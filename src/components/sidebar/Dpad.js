@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { dpadSpriteN, dpadSpriteE, dpadSpriteS, dpadSpriteW } from './assets';
 import { move } from '../../actions';
@@ -8,7 +8,7 @@ export const Dpad = () => {
   const [{ map, game }, dispatch] = useStateValue();
 
   const localMove = direction => {
-    const currentRoom = map.rooms.find(r => r.id === game.curr_room);
+    const currentRoom = map.rooms[game.curr_room -1];
 
     const checkMove = direction => {
       switch (direction) {

@@ -50,12 +50,6 @@ export const move = (dispatch, move, newRoom) => {
     });
 };
 
-export const UPDATE_LOCAL_COORDS = 'UPDATE_LOCAL_COORDS';
-
-export const updateLocalCoords = (dispatch, coords) => {
-  dispatch({ type: UPDATE_LOCAL_COORDS, payload: coords });
-};
-
 export const START_SAY = 'START_SAY';
 export const SAY_SUCCESS = 'SAY_SUCCESS';
 export const SAY_ERROR = 'SAY_ERROR';

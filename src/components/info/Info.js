@@ -6,7 +6,7 @@ import { classSprites_288 } from './assets';
 import { sword, shield } from './assets/items';
 
 export const Info = () => {
-  const [{ game, map }, dispatch] = useStateValue();
+  const [{ game, map }] = useStateValue();
 
   const currentRoom = map.rooms.find(r => r.id === game.curr_room);
 
@@ -23,7 +23,7 @@ export const Info = () => {
       <PlayerName>{game.name}</PlayerName>
       <Items>
         {items.map(item => (
-          <img src={item} />
+          <img alt="Item" src={item} key={item} />
         ))}
       </Items>
     </StyledInfo>
