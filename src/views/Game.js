@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Pusher from 'pusher-js';
 import { Sidebar, Map, Player, Info, Chat } from '../components';
@@ -19,7 +19,7 @@ export const Game = () => {
   useEffect(() => {
     getMap(dispatch);
     gameInit(dispatch);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     subscribeToPusher(game.uuid)
@@ -36,12 +36,12 @@ export const Game = () => {
 
   let sortedMap = map.rooms
     .sort((a, b) => a.x_coord - b.x_coord)
-    .sort((a, b) => a.y_coord - b.y_coord);
+    .sort((a, b) => a.y_coord - b.y_coord); 
   
-    return (
+  return (
     <StyledGame>
       <MapWithSidebar>
-        <Map rooms={sortedMap} x={game.x_coord} y={game.y_coord} />
+        <Map rooms={sortedMap} x={game.local_x} y={game.local_y} />
         <Player />
         <Sidebar />
       </MapWithSidebar>

@@ -19,15 +19,19 @@ game: {
     isLoading: false,
     uuid: '',
     name: '',
+    title: '',
     x_coord: '',
     y_coord: '',
-    title: '',
+    local_x: '',
+    local_y: '',
     description: '',
     players: [],
-    error_msg: '',
-    errorMessage: ''
-    message: ''
-}
+    error_msg: '', //comes from the game
+    errorMessage: '', //comes from the server
+    message: '', //sent by player
+    curr_room: 0,
+    lastMovedDirection: 's'
+  },
 */
 
 export const gameReducer = (state, { type, payload }) => {
