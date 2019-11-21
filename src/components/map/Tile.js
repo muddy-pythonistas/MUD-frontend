@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { cornerCW_16x32, horzWall_16x32, vertWall_16x16 } from './assets';
+import { cornerCW_32x64, horzWall_32x64, vertWall_32x32 } from './assets';
 
 export const Tile = ({ n_to, e_to, s_to, w_to, sprite, ...rest }) => {
   if (n_to || e_to || s_to || w_to) {
@@ -69,13 +69,14 @@ export const Tile = ({ n_to, e_to, s_to, w_to, sprite, ...rest }) => {
 const FloorTile = styled.div`
   background-image: url(${props => props.tile});
   background-repeat: repeat;
-  background-size: 14px;
+  background-size: 16px 16px;
 `;
 
 const CornerSprite = styled.div`
   width: 16px;
   height: 32px;
-  background-image: url(${cornerCW_16x32});
+  background-image: url(${cornerCW_32x64});
+  background-size: 64px 32px;
 `;
 
 const CornerNW = styled(CornerSprite)`
@@ -98,7 +99,8 @@ const Wall = styled.div`
 const VertWall = styled(Wall)`
   width: 16px;
   background-repeat: repeat-y;
-  background-image: url(${vertWall_16x16});
+  background-image: url(${vertWall_32x32});
+  background-size: 16px 16px;
 `;
 
 const WestWall = styled(VertWall)``;
@@ -107,7 +109,8 @@ const EastWall = styled(VertWall)``;
 const HorzWall = styled(Wall)`
   height: 32px;
   background-repeat: repeat-x;
-  background-image: url(${horzWall_16x32});
+  background-image: url(${horzWall_32x64});
+  background-size: 16px 32px;
 `;
 
 const NorthWall = styled(HorzWall)``;

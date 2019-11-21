@@ -1,13 +1,13 @@
 import roguelikeCave from './roguelikeCave.png';
 import roguelikeSprites from './roguelikeSprites.png';
-import cornerCW_16x32 from './cornerCW_16x32.png';
-import horzWall_16x32 from './horzWall_16x32.png';
-import vertWall_16x16 from './vertWall_16x16.png';
+import cornerCW_32x64 from './cornerCW_32x64.png';
+import horzWall_32x64 from './horzWall_32x64.png';
+import vertWall_32x32 from './vertWall_32x32.png';
 
 export {
   roguelikeCave,
   roguelikeSprites,
-  cornerCW_16x32,
-  horzWall_16x32,
-  vertWall_16x16
+  cornerCW_32x64,
+  horzWall_32x64,
+  vertWall_32x32
 };
