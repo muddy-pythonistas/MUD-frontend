@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Tile } from './Tile';
 
 import { tileSprites } from './assets/floortiles';
+import { tsLiteralType } from '@babel/types';
 
 export const Map = ({ rooms, x, y }) => {
   const [coords, setCoords] = useState({
@@ -22,7 +23,7 @@ export const Map = ({ rooms, x, y }) => {
     if (x_min !== coords.x_min || y_min !== coords.y_min) {
       setCoords({ x_min, x_max: x_min + 4, y_min, y_max: y_min + 4 });
     }
-  }, [x, y]);
+  }, [x, y, coords.x_min, coords.y_min]);
 
   useEffect(() => {
     let filtered = rooms.filter(room => {
@@ -39,7 +40,7 @@ export const Map = ({ rooms, x, y }) => {
   return (
     <StyledMap>
       {visibleRooms.map(tile => (
-        <Tile sprite={sprite} {...tile} />
+        <Tile sprite={sprite} {...tile} key={`${tile.x_coord} + ${tile.y_coord}`} />
       ))}
     </StyledMap>
   );
