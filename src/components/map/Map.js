@@ -39,7 +39,7 @@ export const Map = ({ rooms, x, y }) => {
   return (
     <StyledMap>
       {visibleRooms.map(tile => (
-        <Tile sprite={sprite} {...tile} />
+        <Tile sprite={sprite} key={tile.id} {...tile} />
       ))}
     </StyledMap>
   );

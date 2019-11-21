@@ -15,36 +15,39 @@ export const Info = () => {
 
   return (
     <StyledInfo>
-      <Avatar character='warrior' />
+      <Avatar character={game.char_class} />
       <RoomInfo>
         <RoomTitle>{currentRoom ? currentRoom.title : ''}</RoomTitle>
         <RoomDesc>{currentRoom ? currentRoom.description : ''}</RoomDesc>
       </RoomInfo>
       <PlayerName>{game.name}</PlayerName>
-      <Items>
+      <Inventory>
         {items.map(item => (
-          <img src={item} />
+          <Item img={item} key={item} />
         ))}
-      </Items>
+      </Inventory>
     </StyledInfo>
   );
 };
 
-const Avatar = ({ character, dark }) => {
+export const Avatar = ({ character, dark }) => {
   let yOffset = '0px';
   if (dark) {
     yOffset = '-144px';
   }
 
   let xOffset = '0px';
-  switch (character) {
+  let sprite = 'warrior';
+  if (character) sprite = character.toLowerCase();
+
+  switch (sprite) {
     case 'warrior':
       xOffset = '0px';
       break;
     case 'rogue':
       xOffset = '-144px';
       break;
-    case 'archer':
+    case 'ranger':
       xOffset = '-288px';
       break;
     case 'mage':
@@ -101,11 +104,16 @@ const RoomDesc = styled.div`
   font-size: ${({ theme }) => theme.mediumFont};
 `;
 
-const Items = styled.div`
+const Inventory = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  img {
-    margin-right: 8px;
-  }
+`;
+
+const Item = styled.div`
+  width: 32px;
+  height: 32px;
+  background-size: 32px 32px;
+  background-image: ${({ img }) => `url(${img})`};
+  margin-right: 8px;
 `;

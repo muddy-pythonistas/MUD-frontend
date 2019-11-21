@@ -28,6 +28,8 @@ const theme = {
   infoTitle: 'Alagard, monospace, serif',
   infoBody: 'IBM VGA8, monospace, serif',
   infoColor: '#c4c4c4',
+  grayAccent: '#c4c4c4',
+  yellowAccent: '#e8ea90',
   white: '#fff',
   errorRed: '#A50203',
   primary0: '#DEE2E3',

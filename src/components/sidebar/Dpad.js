@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { dpadSpriteN, dpadSpriteE, dpadSpriteS, dpadSpriteW } from './assets';
 import { move } from '../../actions';

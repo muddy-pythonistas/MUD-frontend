@@ -56,6 +56,33 @@ export const updateLocalCoords = (dispatch, coords) => {
   dispatch({ type: UPDATE_LOCAL_COORDS, payload: coords });
 };
 
+export const START_SET_CHARACTER = 'START_SET_CHARACTER';
+export const SET_CHARACTER_SUCCESS = 'SET_CHARACTER_SUCCESS';
+export const SET_CHARACTER_ERROR = 'SET_CHARACTER_ERROR';
+
+export const setCharacter = (dispatch, character) => {
+  dispatch({
+    type: START_SET_CHARACTER
+  });
+  axiosWithAuth()
+    .post('/api/adv/change_char', character)
+    .then(res => {
+      dispatch({
+        type: SET_CHARACTER_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      console.log('error', err.response);
+      if (err.response) {
+        dispatch({
+          type: SET_CHARACTER_ERROR,
+          payload: err.response.message
+        });
+      }
+    });
+};
+
 export const START_SAY = 'START_SAY';
 export const SAY_SUCCESS = 'SAY_SUCCESS';
 export const SAY_ERROR = 'SAY_ERROR';

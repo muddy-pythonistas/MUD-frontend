@@ -34,7 +34,9 @@ export const Player = props => {
       xOffset = '0px';
   }
 
-  const characterSprite = props.character || 'boy';
+  let characterSprite = 'boy';
+  if (props.character) characterSprite = props.character.toLowerCase();
+
   let yOffset = '0px';
 
   switch (characterSprite) {

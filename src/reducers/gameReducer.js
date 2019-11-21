@@ -9,7 +9,10 @@ import {
   LOCAL_MOVE,
   START_SAY,
   SAY_SUCCESS,
-  SAY_ERROR
+  SAY_ERROR,
+  START_SET_CHARACTER,
+  SET_CHARACTER_SUCCESS,
+  SET_CHARACTER_ERROR
 } from '../actions';
 
 /*
@@ -46,14 +49,17 @@ export const gameReducer = (state, { type, payload }) => {
     case START_INIT:
     case START_MOVE:
     case START_SAY:
+    case START_SET_CHARACTER:
       return {
         ...state,
+        ...payload,
         isLoading: true,
         errorMessage: ''
       };
     case INIT_SUCCESS:
     case MOVE_SUCCESS:
     case SAY_SUCCESS:
+    case SET_CHARACTER_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -62,6 +68,7 @@ export const gameReducer = (state, { type, payload }) => {
     case INIT_ERROR:
     case MOVE_ERROR:
     case SAY_ERROR:
+    case SET_CHARACTER_ERROR:
       return {
         ...state,
         isLoading: false,
