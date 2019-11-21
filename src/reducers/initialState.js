@@ -29,6 +29,7 @@ export const initialState = {
   map: {
     isLoading: false,
     rooms: [],
+    items: [],
     errorMessage: ''
   }
 };
