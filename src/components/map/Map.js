@@ -12,8 +12,6 @@ export const Map = ({ rooms, x, y }) => {
     y_max: 4
   });
   const [visibleRooms, setVisibleRooms] = useState([]);
-  // TODO Fix rendering of floor sprites
-  // const sprite = tileSprites[Math.floor(Math.random() * tileSprites.length)];
   const sprite = tileSprites[0];
 
   useEffect(() => {

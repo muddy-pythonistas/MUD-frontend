@@ -5,6 +5,7 @@ State shape:
 map: {
         isLoading: false,
         rooms: [],
+        items: [],
         errorMessage: ''
     },
 */
@@ -21,7 +22,7 @@ export const mapReducer = (state, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                rooms: payload,
+                ...payload,
                 errorMessage: '',
             };
         case MAP_ERROR:
