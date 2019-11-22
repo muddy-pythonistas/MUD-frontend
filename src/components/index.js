@@ -6,3 +6,4 @@ export * from './player';
 export * from './WelcomeHeader'
 export * from './info';
 export * from './chat';
+export * from './NavBar';
