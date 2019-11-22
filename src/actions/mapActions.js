@@ -9,8 +9,7 @@ export const getMap = dispatch => {
   axiosWithAuth()
     .get('/api/adv/get_map/')
     .then(res => {
-      let rooms = res.data.rooms;
-      dispatch({ type: MAP_SUCCESS, payload: rooms });
+      dispatch({ type: MAP_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: MAP_ERROR, payload: err });

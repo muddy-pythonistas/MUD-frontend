@@ -105,3 +105,9 @@ export const say = (dispatch, say) => {
       dispatch({ type: SAY_ERROR, payload: err.response.message });
     });
 };
+
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+
+export const addMessage = (dispatch, message) => {
+    dispatch({ type: ADD_MESSAGE, payload: message });
+}

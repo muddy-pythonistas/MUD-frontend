@@ -22,7 +22,7 @@ export const initialState = {
     players: [],
     error_msg: '', //comes from the game
     errorMessage: '', //comes from the server
-    message: '', //sent by player
+    messages: [], //sent by player
     curr_room: 0,
     lastMovedDirection: 's',
     char_class: 'warrior',
@@ -31,6 +31,7 @@ export const initialState = {
   map: {
     isLoading: false,
     rooms: [],
+    items: [],
     errorMessage: ''
   }
 };

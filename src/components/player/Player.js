@@ -1,21 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { playerSprite } from './assets';
 import { useStateValue } from '../../hooks/useStateValue';
-import { updateLocalCoords } from '../../actions';
 
 export const Player = props => {
-  const [{ game, map }, dispatch] = useStateValue();
-  useEffect(() => {
-    const currentRoom = map.rooms.find(r => r.id === game.curr_room);
-    if (currentRoom) {
-      updateLocalCoords(dispatch, {
-        x_coord: currentRoom.x_coord,
-        y_coord: currentRoom.y_coord
-      });
-    }
-  }, [game.curr_room]);
+  const [{ game }] = useStateValue();
 
   const spriteDirection = props.direction || game.lastMovedDirection;
   let xOffset = '0px';

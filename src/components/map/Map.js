@@ -12,8 +12,6 @@ export const Map = ({ rooms, x, y }) => {
     y_max: 4
   });
   const [visibleRooms, setVisibleRooms] = useState([]);
-  // TODO Fix rendering of floor sprites
-  // const sprite = tileSprites[Math.floor(Math.random() * tileSprites.length)];
   const sprite = tileSprites[0];
 
   useEffect(() => {
@@ -22,7 +20,7 @@ export const Map = ({ rooms, x, y }) => {
     if (x_min !== coords.x_min || y_min !== coords.y_min) {
       setCoords({ x_min, x_max: x_min + 4, y_min, y_max: y_min + 4 });
     }
-  }, [x, y]);
+  }, [x, y, coords.x_min, coords.y_min]);
 
   useEffect(() => {
     let filtered = rooms.filter(room => {
@@ -39,7 +37,7 @@ export const Map = ({ rooms, x, y }) => {
   return (
     <StyledMap>
       {visibleRooms.map(tile => (
-        <Tile sprite={sprite} key={tile.id} {...tile} />
+        <Tile sprite={sprite} {...tile} key={`${tile.x_coord} + ${tile.y_coord}`} />
       ))}
     </StyledMap>
   );
