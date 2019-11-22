@@ -28,6 +28,7 @@ export const initialState = {
         items: [],
         char_class: 'warrior',
         sprite: 'boy',
+        gold: 0
     },
     map: {
         isLoading: false,

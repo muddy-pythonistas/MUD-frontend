@@ -18,9 +18,9 @@ export const Info = () => {
     { id: 6, name: 'Door', img: door }
   ];
 
-  useEffect(() => {
-    setCurrentRoom(map.rooms[game.curr_room - 1]);
-  }, [game.curr_room, map.rooms]);
+    useEffect(() => {
+        setCurrentRoom(map.rooms[game.curr_room-1]);
+    }, [game.curr_room, map.rooms]);
 
   return (
     <StyledInfo>
@@ -35,6 +35,30 @@ export const Info = () => {
           const itemObj = itemList.find(i => i.id === item.id);
           return <Item img={itemObj.img} key={itemObj.id} />;
         })}
+    const [{ game, map }] = useStateValue();
+    const [currentRoom, setCurrentRoom] = useState();
+
+    useEffect(() => {
+        setCurrentRoom(map.rooms[game.curr_room-1]);
+    }, [game.curr_room, map.rooms]);
+
+    // TODO: items in state
+    const items = [sword, shield];
+    
+    return (
+        <StyledInfo>
+            <Avatar character='warrior' />
+            <RoomInfo>
+                <RoomTitle>{currentRoom ? currentRoom.title : ''}</RoomTitle>
+                <RoomDesc>
+                    {currentRoom ? currentRoom.description : ''}
+                </RoomDesc>
+            </RoomInfo>
+            <PlayerName>{game.name}</PlayerName>
+            <Inventory>
+        {items.map(item => (
+          <Item img={item} key={item} />
+        ))}
       </Inventory>
     </StyledInfo>
   );
