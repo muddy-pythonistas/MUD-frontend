@@ -55,13 +55,6 @@ export const Character = props => {
     name: ''
   });
 
-  useEffect(() => {
-    console.log(selectedCharacterSprite);
-  }, [selectedCharacterSprite]);
-  useEffect(() => {
-    console.log(selectedCharacterClass);
-  }, [selectedCharacterClass]);
-
   const handleSubmit = e => {
     e.preventDefault();
     setCharacter(dispatch, {
