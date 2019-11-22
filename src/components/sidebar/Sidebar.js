@@ -20,7 +20,6 @@ export const Sidebar = () => {
         if (game.uuid) setDoorMessage(true);
     }, [game.attempts]);
 
-    console.log(game)
     return (
         <StyledControls>
             <Avatar character='warrior' />
@@ -43,12 +42,11 @@ export const Sidebar = () => {
                 ))}
             </OtherPlayers>
             <DoorMessage>
-
                 {doorMessage && (
                     <span>
                         {game.hasWon
-                            ? 'It appears the door is locked.'
-                            : 'The door opens to a new world...'}
+                            ? 'The door opens to a new world...'
+                            : 'It appears the door is locked.'}
                     </span>
                 )}
             </DoorMessage>

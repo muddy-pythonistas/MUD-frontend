@@ -106,9 +106,9 @@ export const gameReducer = (state, { type, payload }) => {
                 messages: [...state.messages, payload],
             };
         case CHECK_DOOR:
-            console.log('checking door')
-            let hasKey = state.items.some(item => item.id ===5);
 
+            let hasKey = state.items.some(item => item.id ===5);
+            
             return {
                 ...state,
                 hasWon: hasKey,
