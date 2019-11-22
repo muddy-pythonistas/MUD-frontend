@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStateValue } from '../../hooks/useStateValue';
-
+import { Dpad } from '../sidebar';
 import { classSprites_288 } from './assets';
 import { gold, sword, shield, key, door } from './assets/items';
 
@@ -9,14 +9,7 @@ export const Info = () => {
     const [{ game, map }] = useStateValue();
     const [currentRoom, setCurrentRoom] = useState();
 
-    const itemList = [
-        { id: 1, name: 'Empty', img: gold },
-        { id: 2, name: 'Gold', img: gold },
-        { id: 3, name: 'Sword', img: sword },
-        { id: 4, name: 'Shield', img: shield },
-        { id: 5, name: 'Key', img: key },
-        { id: 6, name: 'Door', img: door },
-    ];
+    
 
     useEffect(() => {
         setCurrentRoom(map.rooms[game.curr_room - 1]);
@@ -24,25 +17,13 @@ export const Info = () => {
 
     return (
         <StyledInfo>
-            <Avatar character='warrior' />
             <RoomInfo>
                 <RoomTitle>{currentRoom ? currentRoom.title : ''}</RoomTitle>
                 <RoomDesc>
                     {currentRoom ? currentRoom.description : ''}
                 </RoomDesc>
             </RoomInfo>
-            <PlayerName>{game.name}</PlayerName>
-            <Inventory>
-                {game.items.map(item => {
-                    const itemObj = itemList.find(i => i.id === item.id);
-                    return (
-                        <ItemContainer>
-                            <Item img={itemObj.img} key={itemObj.id} />
-                            <span>{item.id === 2 ? game.gold : 1}</span>
-                        </ItemContainer>
-                    );
-                })}
-            </Inventory>
+            <Dpad />
         </StyledInfo>
     );
 };
@@ -76,12 +57,13 @@ export const Avatar = ({ character, dark }) => {
 
 const StyledInfo = styled.div`
     background-color: #333;
-    width: 100%;
-    height: 264px;
+    width: 940px;
+    height: 200px;
 
-    display: grid;
-    grid-template-rows: 176px 56px;
-    grid-template-columns: 176px auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center
 
     font-family: ${({ theme }) => theme.infoBody};
     color: ${({ theme }) => theme.infoColor};
@@ -98,7 +80,7 @@ const ClassSprite = styled.div`
     height: 144px;
 `;
 
-const PlayerName = styled.div`
+export const PlayerName = styled.div`
     font-size: ${({ theme }) => theme.mediumFont};
     margin: 8px 0;
     text-align: center;
@@ -106,7 +88,7 @@ const PlayerName = styled.div`
 
 const RoomInfo = styled.div`
     margin-top: 24px;
-    max-width: 450px;
+    width: 450px
 `;
 const RoomTitle = styled.div`
     font-family: ${({ theme }) => theme.infoTitle};
@@ -118,20 +100,20 @@ const RoomDesc = styled.div`
     font-size: ${({ theme }) => theme.mediumFont};
 `;
 
-const Inventory = styled.div`
+export const Inventory = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
 `;
 
-const Item = styled.div`
+export const Item = styled.div`
     width: 32px;
     height: 32px;
     background-size: 32px 32px;
     background-image: ${({ img }) => `url(${img})`};
 `;
 
-const ItemContainer = styled.div`
+export const ItemContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 15px 10px;

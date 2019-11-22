@@ -82,6 +82,8 @@ const DpadContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 160px;
+    height: 160px
 `;
 
 const StyledDpad = styled.div`
