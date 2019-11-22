@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { dpadSpriteN, dpadSpriteE, dpadSpriteS, dpadSpriteW } from './assets';
-import { move } from '../../actions';
+import { move, grabItem } from '../../actions';
 import { useStateValue } from '../../hooks/useStateValue';
 
 export const Dpad = () => {
@@ -23,9 +23,13 @@ export const Dpad = () => {
                     return null;
             }
         };
-
         const newRoom = checkMove(direction);
+        console.log(newRoom);
         if (newRoom) {
+            const storedRoom = map.rooms[newRoom - 1];
+            if (storedRoom.item_id > 1) {
+                grabItem(dispatch, { item: storedRoom.item_id });
+            }
             move(dispatch, { direction: direction }, newRoom);
         } else {
             return null;
@@ -34,7 +38,6 @@ export const Dpad = () => {
 
     const handleUserKeyPress = event => {
         const { keyCode } = event;
-
         switch (keyCode) {
             case 37:
                 localMove('w');

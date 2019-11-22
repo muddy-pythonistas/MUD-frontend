@@ -6,25 +6,27 @@ import { classSprites_288 } from './assets';
 import { sword, shield } from './assets/items';
 
 export const Info = () => {
-  const [{ game, map }] = useStateValue();
-  const [currentRoom, setCurrentRoom] = useState();
+    const [{ game, map }] = useStateValue();
+    const [currentRoom, setCurrentRoom] = useState();
 
-  useEffect(() => {
-    setCurrentRoom(map.rooms[game.curr_room - 1]);
-  }, [game.curr_room, map.rooms]);
+    useEffect(() => {
+        setCurrentRoom(map.rooms[game.curr_room-1]);
+    }, [game.curr_room, map.rooms]);
 
-  // TODO: items in state
-  const items = [sword, shield];
-
-  return (
-    <StyledInfo>
-      <Avatar character='warrior' />
-      <RoomInfo>
-        <RoomTitle>{currentRoom ? currentRoom.title : ''}</RoomTitle>
-        <RoomDesc>{currentRoom ? currentRoom.description : ''}</RoomDesc>
-      </RoomInfo>
-      <PlayerName>{game.name}</PlayerName>
-      <Inventory>
+    // TODO: items in state
+    const items = [sword, shield];
+    
+    return (
+        <StyledInfo>
+            <Avatar character='warrior' />
+            <RoomInfo>
+                <RoomTitle>{currentRoom ? currentRoom.title : ''}</RoomTitle>
+                <RoomDesc>
+                    {currentRoom ? currentRoom.description : ''}
+                </RoomDesc>
+            </RoomInfo>
+            <PlayerName>{game.name}</PlayerName>
+            <Inventory>
         {items.map(item => (
           <Item img={item} key={item} />
         ))}
