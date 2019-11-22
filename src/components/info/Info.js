@@ -28,11 +28,11 @@ export const Info = () => {
                 </RoomDesc>
             </RoomInfo>
             <PlayerName>{game.name}</PlayerName>
-            <Items>
-                {items.map(item => (
-                    <img alt='Item' src={item} key={item} />
-                ))}
-            </Items>
+            <Inventory>
+        {items.map(item => (
+          <Item img={item} key={item} />
+        ))}
+      </Inventory>
         </StyledInfo>
     );
 };
@@ -108,11 +108,16 @@ const RoomDesc = styled.div`
     font-size: ${({ theme }) => theme.mediumFont};
 `;
 
-const Items = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    img {
-        margin-right: 8px;
-    }
+const Inventory = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+const Item = styled.div`
+  width: 32px;
+  height: 32px;
+  background-size: 32px 32px;
+  background-image: ${({ img }) => `url(${img})`};
+  margin-right: 8px;
 `;
