@@ -47,6 +47,7 @@ game: {
 */
 
 export const gameReducer = (state, { type, payload }) => {
+    console.log(type)
     switch (type) {
         case LOCAL_MOVE:
             let direction = payload.direction;
