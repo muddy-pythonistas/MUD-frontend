@@ -6,7 +6,7 @@ import { Sidebar, Map, Player, Info, Chat } from '../components';
 import { useStateValue } from '../hooks/useStateValue';
 import { getMap, gameInit, addMessage } from '../actions';
 
-Pusher.logToConsole = true;
+Pusher.logToConsole = Boolean(process.env.REACT_APP_pusherLog);
 
 const pusher = new Pusher(process.env.REACT_APP_pusherKey, {
     cluster: process.env.REACT_APP_pusherCluster,
