@@ -28,10 +28,6 @@ export const Game = () => {
         };
     }, [dispatch]);
 
-    useEffect(() => {
-        if(game.uuid)
-            console.log('display modal', game.hasWon, game.items)
-    }, [game.attempts]);
 
     useEffect(() => {
         subscribeToPusher(game.uuid);

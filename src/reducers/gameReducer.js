@@ -47,7 +47,6 @@ game: {
 */
 
 export const gameReducer = (state, { type, payload }) => {
-    console.log(type)
     switch (type) {
         case LOCAL_MOVE:
             let direction = payload.direction;
@@ -107,6 +106,7 @@ export const gameReducer = (state, { type, payload }) => {
                 messages: [...state.messages, payload],
             };
         case CHECK_DOOR:
+            console.log('checking door')
             let hasKey = state.items.some(item => item.id ===5);
 
             return {
