@@ -75,7 +75,8 @@ const MapWithSidebar = styled.div`
 `;
 
 const StyledGame = styled.div`
-    width: 840px;
-    display: grid;
-    grid-template-rows: auto auto;
+  margin-top: 60px;
+  width: 840px;
+  display: grid;
+  grid-template-rows: auto auto;
 `;
