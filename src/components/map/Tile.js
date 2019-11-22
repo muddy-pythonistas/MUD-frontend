@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { cornerCW_32x64, horzWall_32x64, vertWall_32x32 } from './assets';
 import { gold, sword, shield, key, door } from './assets/items';
-import {StyledPlayer} from '../player'
+import { StyledPlayer } from '../player';
 export const Tile = ({
     n_to,
     e_to,
@@ -26,7 +26,6 @@ export const Tile = ({
     const [localOccupied, setLocalOccupied] = useState(false);
 
     useEffect(() => {
-        console.log('ueh')
         if (occupied_rooms.includes(id)) {
             setLocalOccupied(true);
         } else {
@@ -39,7 +38,7 @@ export const Tile = ({
         return (
             <TileContainer>
                 <FullTileFloor tile={sprite} />
-                {localOccupied && <IdlePlayer id={id}/>}
+                {localOccupied && <IdlePlayer id={id} />}
                 <Item img={item.img} id={item.id} />
                 <TileWallGrid>
                     {n_to ? (
@@ -205,7 +204,7 @@ const Item = styled.div`
 
 const IdlePlayer = styled(StyledPlayer)`
     background-position-x: 0px;
-    background-position-y: ${props => props.id%2 === 0 ? '0px' : '-32px'};
+    background-position-y: 0px;
     top: 32px;
     left: 72px;
 `;

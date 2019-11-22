@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStateValue } from '../../hooks/useStateValue';
 
@@ -7,6 +7,7 @@ import { gold, sword, shield, key, door } from '../info/assets/items';
 import { Avatar, PlayerName, Inventory, ItemContainer, Item } from '../info';
 export const Sidebar = () => {
     const [{ game, map }] = useStateValue();
+    const [doorMessage, setDoorMessage] = useState(false);
     const itemList = [
         { id: 1, name: 'Empty', img: gold },
         { id: 2, name: 'Gold', img: gold },
@@ -15,6 +16,9 @@ export const Sidebar = () => {
         { id: 5, name: 'Key', img: key },
         { id: 6, name: 'Door', img: door },
     ];
+    useEffect(() => {
+        if (game.uuid) setDoorMessage(true);
+    }, [game.attempts]);
 
     return (
         <StyledControls>
@@ -37,11 +41,25 @@ export const Sidebar = () => {
                     <OtherPlayer>{player}</OtherPlayer>
                 ))}
             </OtherPlayers>
+            <DoorMessage>
+                {doorMessage && (
+                    <span>
+                        {game.hasWon
+                            ? 'The door opens to a new world...'
+                            : 'It appears the door is locked.'}
+                    </span>
+                )}
+            </DoorMessage>
             <Chat />
         </StyledControls>
     );
 };
-
+const DoorMessage = styled.div`
+    height: 20px;
+    font-size: ${({ theme }) => theme.smallFont};
+    font-family: ${({ theme }) => theme.infoBody};
+    color: ${({ theme }) => theme.infoColor};
+`;
 const OtherPlayers = styled.div`
     display: flex;
     flex-direction: column;
