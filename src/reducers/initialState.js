@@ -34,6 +34,7 @@ export const initialState = {
         isLoading: false,
         rooms: [],
         items: [],
+        occupied_rooms: [],
         errorMessage: '',
     },
 };
