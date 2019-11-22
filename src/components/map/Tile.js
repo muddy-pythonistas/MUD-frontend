@@ -23,7 +23,6 @@ export const Tile = ({
     ];
 
     const item = itemList.find(item => item.id === item_id);
-    console.log(occupied)
     if (n_to || e_to || s_to || w_to) {
         return (
             <TileContainer>

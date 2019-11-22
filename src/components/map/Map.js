@@ -29,13 +29,11 @@ export const Map = ({ rooms, x, y, occupied_rooms }) => {
                     room.y_coord >= coords.y_min &&
                     room.y_coord <= coords.y_max
                 ) {
-                    if (occupied_rooms.includes(room.id - 1)){
-                        room.occupied = true
-                        return room
-                    }
-                    else
-                        room.occupied = false
-                        return room
+                    if (occupied_rooms.includes(room.id)) {
+                        room.occupied = true;
+                        return room;
+                    } else room.occupied = false;
+                    return room;
                 }
             }
         });
