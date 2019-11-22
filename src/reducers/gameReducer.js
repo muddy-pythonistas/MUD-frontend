@@ -38,7 +38,8 @@ game: {
     message: '', //sent by player
     curr_room: 0,
     lastMovedDirection: 's',
-    items: []
+    items: [],
+    gold: 0
   },
 */
 

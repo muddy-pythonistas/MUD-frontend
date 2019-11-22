@@ -15,7 +15,7 @@ export const Info = () => {
 
     // TODO: items in state
     const items = [sword, shield];
-
+    
     return (
         <StyledInfo>
             <Avatar character='warrior' />
