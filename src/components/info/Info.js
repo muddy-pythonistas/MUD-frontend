@@ -6,7 +6,6 @@ import { classSprites_288 } from './assets';
 import { sword, shield } from './assets/items';
 
 export const Info = () => {
-<<<<<<< HEAD
     const [{ game, map }] = useStateValue();
     const [currentRoom, setCurrentRoom] = useState();
 
@@ -28,27 +27,6 @@ export const Info = () => {
             </RoomInfo>
             <PlayerName>{game.name}</PlayerName>
             <Inventory>
-=======
-  const [{ game, map }] = useStateValue();
-  const [currentRoom, setCurrentRoom] = useState();
-
-  useEffect(() => {
-    setCurrentRoom(map.rooms[game.curr_room - 1]);
-  }, [game.curr_room, map.rooms]);
-
-  // TODO: items in state
-  const items = [sword, shield];
-
-  return (
-    <StyledInfo>
-      <Avatar character='warrior' />
-      <RoomInfo>
-        <RoomTitle>{currentRoom ? currentRoom.title : ''}</RoomTitle>
-        <RoomDesc>{currentRoom ? currentRoom.description : ''}</RoomDesc>
-      </RoomInfo>
-      <PlayerName>{game.name}</PlayerName>
-      <Inventory>
->>>>>>> master
         {items.map(item => (
           <Item img={item} key={item} />
         ))}
