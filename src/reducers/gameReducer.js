@@ -15,6 +15,9 @@ import {
     ADD_ITEM_ERROR,
     DROP_ITEM_SUCCESS,
     DROP_ITEM_ERROR,
+    START_SET_CHARACTER,
+    SET_CHARACTER_SUCCESS,
+    SET_CHARACTER_ERROR,
 } from '../actions';
 
 /*
@@ -60,15 +63,18 @@ export const gameReducer = (state, { type, payload }) => {
         case START_MOVE:
         case START_SAY:
         case START_ITEM_CHANGE:
+        case START_SET_CHARACTER:
             return {
                 ...state,
                 isLoading: true,
+                ...payload,
                 errorMessage: '',
             };
         case INIT_SUCCESS:
         case MOVE_SUCCESS:
         case ADD_ITEM_SUCCESS:
         case DROP_ITEM_SUCCESS:
+        case SET_CHARACTER_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
@@ -84,6 +90,7 @@ export const gameReducer = (state, { type, payload }) => {
         case SAY_ERROR:
         case ADD_ITEM_ERROR:
         case DROP_ITEM_ERROR:
+        case SET_CHARACTER_ERROR:
             return {
                 ...state,
                 isLoading: false,

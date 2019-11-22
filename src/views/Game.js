@@ -41,7 +41,7 @@ export const Game = () => {
     <StyledGame>
       <MapWithSidebar>
         <Map rooms={sortedMap} x={game.local_x} y={game.local_y} />
-        <Player />
+        <Player character={game.sprite} />
         <Sidebar />
       </MapWithSidebar>
       <Info />
