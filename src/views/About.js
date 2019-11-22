@@ -8,7 +8,7 @@ export const About = () => {
   return (
     <AboutContainer>
       <h2>About</h2>
-      <p className='about-description'>Python Quest is an multi-user dugeon adventure game that allows players to explore a virtual world, collect items, complete missions, and interact with other players. The team used React on the front end to build a visualization and navigation client interface, and Django on the backend to build the API and database for generating and storing the map. With no prior experience with Django, the team successfully learned and delivered the product in just 4 days. </p>
+      <p className='about-description'>Python Quest is an multi-user dungeon adventure game that allows players to explore a virtual world, collect items, complete missions, and interact with other players. The team used React on the front end to build a visualization and navigation client interface, and Django on the backend to build the API and database for generating and storing the map. With no prior experience with Django, the team successfully learned and delivered the product in just 4 days. </p>
       <a href='' target='_blank' rel='noopener noreferrer'>Link to Github repo</a>
       <h2>Meet the team</h2>
       <AboutContent>
