@@ -34,6 +34,7 @@ export const Map = ({ rooms, x, y }) => {
     setVisibleRooms(filtered);
   }, [coords, rooms]);
 
+  console.log(visibleRooms[0])
   return (
     <StyledMap>
       {visibleRooms.map(tile => (
