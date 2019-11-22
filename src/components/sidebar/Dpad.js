@@ -7,7 +7,7 @@ import { useStateValue } from '../../hooks/useStateValue';
 export const Dpad = () => {
     const [{ map, game }, dispatch] = useStateValue();
 
-    const localMove = direction => {
+    const localMove = async direction => {
         const currentRoom = map.rooms[game.curr_room - 1];
         const checkMove = direction => {
             switch (direction) {
@@ -24,11 +24,10 @@ export const Dpad = () => {
             }
         };
         const newRoom = checkMove(direction);
-        console.log(newRoom);
         if (newRoom) {
             const storedRoom = map.rooms[newRoom - 1];
             if (storedRoom.item_id > 1) {
-                grabItem(dispatch, { item: storedRoom.item_id });
+                await grabItem(dispatch, { item: storedRoom.item_id });
             }
             move(dispatch, { direction: direction }, newRoom);
         } else {
