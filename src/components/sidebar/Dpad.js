@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { dpadSpriteN, dpadSpriteE, dpadSpriteS, dpadSpriteW } from './assets';
-import { move, grabItem } from '../../actions';
+import { move, grabItem, checkDoor } from '../../actions';
 import { useStateValue } from '../../hooks/useStateValue';
 
 export const Dpad = () => {
     const [{ map, game }, dispatch] = useStateValue();
 
-    const localMove = direction => {
+    const localMove = async direction => {
         const currentRoom = map.rooms[game.curr_room - 1];
         const checkMove = direction => {
             switch (direction) {
@@ -24,11 +24,13 @@ export const Dpad = () => {
             }
         };
         const newRoom = checkMove(direction);
-        console.log(newRoom);
         if (newRoom) {
             const storedRoom = map.rooms[newRoom - 1];
-            if (storedRoom.item_id > 1) {
-                grabItem(dispatch, { item: storedRoom.item_id });
+            if(storedRoom.item_id === 6){
+                await checkDoor(dispatch)
+            }
+            else if (storedRoom.item_id > 1) {
+                await grabItem(dispatch, { item: storedRoom.item_id });
             }
             move(dispatch, { direction: direction }, newRoom);
         } else {

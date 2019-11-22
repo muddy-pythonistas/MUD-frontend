@@ -18,6 +18,7 @@ import {
     START_SET_CHARACTER,
     SET_CHARACTER_SUCCESS,
     SET_CHARACTER_ERROR,
+    CHECK_DOOR,
 } from '../actions';
 
 /*
@@ -39,7 +40,9 @@ game: {
     curr_room: 0,
     lastMovedDirection: 's',
     items: [],
-    gold: 0
+    gold: 0,
+    hasWon: false,
+    attempts: 0
   },
 */
 
@@ -101,6 +104,14 @@ export const gameReducer = (state, { type, payload }) => {
             return {
                 ...state,
                 messages: [...state.messages, payload],
+            };
+        case CHECK_DOOR:
+            let hasKey = state.items.some(item => item.id ===5);
+
+            return {
+                ...state,
+                hasWon: hasKey,
+                attempts: state.attempts +1
             };
         default:
             return state;

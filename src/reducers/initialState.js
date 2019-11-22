@@ -28,12 +28,15 @@ export const initialState = {
         items: [],
         char_class: 'warrior',
         sprite: 'boy',
-        gold: 0
+        gold: 0,
+        hasWon: false,
+        attempts: 0
     },
     map: {
         isLoading: false,
         rooms: [],
         items: [],
+        occupied_rooms: [],
         errorMessage: '',
     },
 };
