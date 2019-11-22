@@ -29,10 +29,6 @@ export const Map = ({ rooms, x, y, occupied_rooms }) => {
                     room.y_coord >= coords.y_min &&
                     room.y_coord <= coords.y_max
                 ) {
-                    if (occupied_rooms.includes(room.id)) {
-                        room.occupied = true;
-                        return room;
-                    } else room.occupied = false;
                     return room;
                 }
             }
@@ -47,6 +43,7 @@ export const Map = ({ rooms, x, y, occupied_rooms }) => {
                 <Tile
                     sprite={sprite}
                     {...tile}
+                    occupied_rooms={occupied_rooms}
                     key={`${tile.x_coord} + ${tile.y_coord}`}
                 />
             ))}

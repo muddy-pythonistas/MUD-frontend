@@ -28,13 +28,29 @@ export const mapReducer = (state, { type, payload }) => {
                 errorMessage: '',
             };
         case MAP_SUCCESS:
-        case OCCUPIED_ROOMS_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 ...payload,
                 errorMessage: '',
             };
+        case OCCUPIED_ROOMS_SUCCESS:
+            if (
+                JSON.stringify(payload.occupied_rooms) ===
+                JSON.stringify(state.occupied_rooms)
+            )
+                return {
+                    ...state,
+                    isLoading: false,
+                    errorMessage: '',
+                };
+            else
+                return {
+                    ...state,
+                    isLoading: false,
+                    ...payload,
+                    errorMessage: '',
+                };
         case MAP_ERROR:
         case OCCUPIED_ROOMS_ERROR:
             return {
