@@ -52,8 +52,32 @@ export const move = (dispatch, move, newRoom) => {
 
 export const UPDATE_LOCAL_COORDS = 'UPDATE_LOCAL_COORDS';
 
-export const updateLocalCoords = (dispatch, coords) => {
-  dispatch({ type: UPDATE_LOCAL_COORDS, payload: coords });
+
+export const START_SET_CHARACTER = 'START_SET_CHARACTER';
+export const SET_CHARACTER_SUCCESS = 'SET_CHARACTER_SUCCESS';
+export const SET_CHARACTER_ERROR = 'SET_CHARACTER_ERROR';
+
+export const setCharacter = (dispatch, character) => {
+  dispatch({
+    type: START_SET_CHARACTER
+  });
+  axiosWithAuth()
+    .post('/api/adv/change_char', character)
+    .then(res => {
+      dispatch({
+        type: SET_CHARACTER_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      console.log('error', err.response);
+      if (err.response) {
+        dispatch({
+          type: SET_CHARACTER_ERROR,
+          payload: err.response.message
+        });
+      }
+    });
 };
 
 export const START_SAY = 'START_SAY';
@@ -83,4 +107,43 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 
 export const addMessage = (dispatch, message) => {
     dispatch({ type: ADD_MESSAGE, payload: message });
+}
+
+
+export const START_ITEM_CHANGE = 'START_ITEM_CHANGE'
+export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS'
+export const ADD_ITEM_ERROR = 'ADD_ITEM_ERROR'
+export const DROP_ITEM_SUCCESS = 'DROP_ITEM_SUCCESS'
+export const DROP_ITEM_ERROR = 'DROP_ITEM_ERROR'
+
+/* item should be of object type
+{
+    'item': '' <--item's id number
+}
+*/
+
+export const grabItem = (dispatch, item) => {
+    dispatch({type: START_ITEM_CHANGE})
+    axiosWithAuth()
+        .post('/api/adv/grab_item/', item)
+        .then(res => {
+            dispatch({type: ADD_ITEM_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            console.log('error', err.response);
+            dispatch({ type: ADD_ITEM_ERROR, payload: err.response.message });
+          });
+}
+
+export const dropItem = (dispatch, item) => {
+    dispatch({type: START_ITEM_CHANGE})
+    axiosWithAuth()
+        .post('/api/adv/drop_item/', item)
+        .then(res => {
+            dispatch({type: DROP_ITEM_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            console.log('error', err.response);
+            dispatch({ type: DROP_ITEM_ERROR, payload: err.response.message });
+          });
 }

@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStateValue } from '../../hooks/useStateValue';
 
 import { classSprites_288 } from './assets';
-import { sword, shield } from './assets/items';
+import { gold, sword, shield, key, door } from './assets/items';
 
 export const Info = () => {
-  const [{ game, map }, dispatch] = useStateValue();
+  const [{ game, map }] = useStateValue();
+  const [currentRoom, setCurrentRoom] = useState();
 
-  const currentRoom = map.rooms.find(r => r.id === game.curr_room);
+  const itemList = [
+    { id: 1, name: 'Empty', img: gold },
+    { id: 2, name: 'Gold', img: gold },
+    { id: 3, name: 'Sword', img: sword },
+    { id: 4, name: 'Shield', img: shield },
+    { id: 5, name: 'Key', img: key },
+    { id: 6, name: 'Door', img: door }
+  ];
 
-  // TODO: items in state
-  const items = [sword, shield];
+  useEffect(() => {
+    setCurrentRoom(map.rooms[game.curr_room - 1]);
+  }, [game.curr_room, map.rooms]);
 
   return (
     <StyledInfo>
@@ -21,30 +30,31 @@ export const Info = () => {
         <RoomDesc>{currentRoom ? currentRoom.description : ''}</RoomDesc>
       </RoomInfo>
       <PlayerName>{game.name}</PlayerName>
-      <Items>
-        {items.map(item => (
-          <img src={item} />
-        ))}
-      </Items>
+      <Inventory>
+        {game.items.map(item => {
+          const itemObj = itemList.find(i => i.id === item.id);
+          return <Item img={itemObj.img} key={itemObj.id} />;
+        })}
+      </Inventory>
     </StyledInfo>
   );
 };
 
-const Avatar = ({ character, dark }) => {
+export const Avatar = ({ character, dark }) => {
   let yOffset = '0px';
   if (dark) {
     yOffset = '-144px';
   }
 
   let xOffset = '0px';
-  switch (character) {
+  switch (character.toLowerCase()) {
     case 'warrior':
       xOffset = '0px';
       break;
     case 'rogue':
       xOffset = '-144px';
       break;
-    case 'archer':
+    case 'ranger':
       xOffset = '-288px';
       break;
     case 'mage':
@@ -101,11 +111,16 @@ const RoomDesc = styled.div`
   font-size: ${({ theme }) => theme.mediumFont};
 `;
 
-const Items = styled.div`
+const Inventory = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  img {
-    margin-right: 8px;
-  }
+`;
+
+const Item = styled.div`
+  width: 32px;
+  height: 32px;
+  background-size: 32px 32px;
+  background-image: ${({ img }) => `url(${img})`};
+  margin-right: 8px;
 `;

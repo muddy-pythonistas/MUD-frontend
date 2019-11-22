@@ -11,7 +11,7 @@ export const Login = () => {
 
     useEffect(() => {
         clearErrors(dispatch)
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
