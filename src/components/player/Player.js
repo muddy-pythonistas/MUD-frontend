@@ -56,5 +56,5 @@ const StyledPlayer = styled.div`
   left: ${props => (props.local_x % 5) * 128 + 48}px;
   top: ${props => (props.local_y % 5) * 128 + 48}px;
 
-  transition: left 0.2s, top 0.2s;
+  transition: left 0.2s linear, top 0.2s linear;
 `;
