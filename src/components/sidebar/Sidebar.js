@@ -47,7 +47,7 @@ export const Sidebar = () => {
                 {doorMessage && (
                     <span>
                         {game.hasWon
-                            ? 'Hmm...it appears the door is locked.'
+                            ? 'It appears the door is locked.'
                             : 'The door opens to a new world...'}
                     </span>
                 )}
