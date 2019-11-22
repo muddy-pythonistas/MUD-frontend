@@ -43,7 +43,7 @@ export const Player = props => {
   return <StyledPlayer {...game} xOffset={xOffset} yOffset={yOffset} />;
 };
 
-const StyledPlayer = styled.div`
+export const StyledPlayer = styled.div`
   background-image: url(${playerSprite});
   background-repeat: no-repeat;
   background-position-x: ${props => props.xOffset};
