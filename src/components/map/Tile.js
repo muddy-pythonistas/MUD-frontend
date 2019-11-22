@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { cornerCW_32x64, horzWall_32x64, vertWall_32x32 } from './assets';
 import { gold, sword, shield, key, door } from './assets/items';
@@ -10,7 +10,8 @@ export const Tile = ({
     w_to,
     sprite,
     item_id,
-    occupied,
+    occupied_rooms,
+    id,
     ...rest
 }) => {
     const itemList = [
@@ -22,12 +23,23 @@ export const Tile = ({
         { id: 6, name: 'Door', img: door },
     ];
 
+    const [localOccupied, setLocalOccupied] = useState(false);
+
+    useEffect(() => {
+        if(occupied_rooms.includes(id)){
+            setLocalOccupied(true)
+        }
+        else{
+            setLocalOccupied(false)
+        }
+    }, [occupied_rooms]);
+
     const item = itemList.find(item => item.id === item_id);
     if (n_to || e_to || s_to || w_to) {
         return (
             <TileContainer>
                 <FullTileFloor tile={sprite} />
-                {occupied && 'test'}
+                {localOccupied && 'test'}
                 <Item img={item.img} id={item.id} />
                 <TileWallGrid>
                     {n_to ? (

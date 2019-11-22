@@ -21,7 +21,7 @@ export const Game = () => {
         getOccupiedRooms(dispatch);
         let interval = setInterval(() => {
             getOccupiedRooms(dispatch);
-        }, 3000);
+        }, 1000);
 
         return () => {
             clearInterval(interval);
