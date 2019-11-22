@@ -16,8 +16,6 @@ export const Info = () => {
     // TODO: items in state
     const items = [sword, shield];
 
-    console.log(game.curr_room)
-    console.log(currentRoom)
     return (
         <StyledInfo>
             <Avatar character='warrior' />
@@ -37,7 +35,7 @@ export const Info = () => {
     );
 };
 
-const Avatar = ({ character, dark }) => {
+export const Avatar = ({ character, dark }) => {
     let yOffset = '0px';
     if (dark) {
         yOffset = '-144px';
