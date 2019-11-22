@@ -1,12 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { cornerCW_32x64, horzWall_32x64, vertWall_32x32 } from './assets';
+import { gold, sword, shield, key, door } from './assets/items';
 
-export const Tile = ({ n_to, e_to, s_to, w_to, sprite, ...rest }) => {
+export const Tile = ({ n_to, e_to, s_to, w_to, sprite, item_id, ...rest }) => {
+  const itemList = [
+    { id: 1, name: 'Empty', img: gold },
+    { id: 2, name: 'Gold', img: gold },
+    { id: 3, name: 'Sword', img: sword },
+    { id: 4, name: 'Shield', img: shield },
+    { id: 5, name: 'Key', img: key },
+    { id: 6, name: 'Door', img: door }
+  ];
+
+  const item = itemList.find(item => item.id === item_id);
+
   if (n_to || e_to || s_to || w_to) {
     return (
       <TileContainer>
         <FullTileFloor tile={sprite} />
+        <Item img={item.img} id={item.id} />
         <TileWallGrid>
           {n_to ? (
             w_to ? (
@@ -140,3 +153,31 @@ const TileContainer = styled.div`
 `;
 
 const EmptyTile = styled.div``;
+
+const Item = styled.div`
+  position: absolute;
+  left: ${props => (props.id === 6 ? '32px' : '48px')};
+  top: ${props => (props.id === 6 ? '-32px' : '48px')};
+  background-image: url(${props => props.img});
+  background-image: no-repeat;
+  height: ${props => (props.id === 6 ? '64px' : '32px')};
+  width: ${props => (props.id === 6 ? '64px' : '32px')};
+  background-size: ${props => (props.id === 6 ? '64px 64px' : '32px 32px')};
+
+  display: ${props => (props.id === 1 ? 'none' : 'block')};
+
+  @keyframes mover {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  animation: ${props =>
+    props.id === 6 ? 'none' : 'mover 2s infinite ease-in-out'};
+`;
