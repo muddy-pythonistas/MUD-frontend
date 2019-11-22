@@ -22,7 +22,7 @@ export const Sidebar = () => {
 
     return (
         <StyledControls>
-            <Avatar character='warrior' />
+            <Avatar character={game.char_class} />
             <PlayerName>{game.name}</PlayerName>
             <Inventory>
                 {game.items.map(item => {
