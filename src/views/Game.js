@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Pusher from 'pusher-js';
-import { Sidebar, Map, Player, Info, Chat } from '../components';
+import { Sidebar, Map, Player, Info } from '../components';
 
 import { useStateValue } from '../hooks/useStateValue';
 import { getMap, gameInit, addMessage } from '../actions';
 
-Pusher.logToConsole = false
+Pusher.logToConsole = Boolean(process.env.REACT_APP_pusherLog);
 
 const pusher = new Pusher(process.env.REACT_APP_pusherKey, {
     cluster: process.env.REACT_APP_pusherCluster,
@@ -45,7 +45,6 @@ export const Game = () => {
         <Sidebar />
       </MapWithSidebar>
       <Info />
-      <Chat />
     </StyledGame>
   );
 };
