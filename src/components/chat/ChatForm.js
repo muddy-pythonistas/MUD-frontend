@@ -42,7 +42,7 @@ const StyledInput = styled.input`
   border: none;
   padding: 0.4rem 1rem;
   background: transparent
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.accent0};
   font-family: ${({ theme }) => theme.infoBody};
 
   &:focus {
@@ -56,7 +56,7 @@ const StyledButton = styled.button`
   border-bottom-right-radius: 10px;
   background: transparent
   font-family: ${({ theme }) => theme.infoBody};
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.accent0};
   padding: 1rem;
   font-size: ${({ theme }) => theme.smallFont};
   cursor: pointer;

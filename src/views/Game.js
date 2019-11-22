@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Pusher from 'pusher-js';
-import { Sidebar, Map, Player, Info, Chat } from '../components';
+import { Sidebar, Map, Player, Info } from '../components';
 
 import { useStateValue } from '../hooks/useStateValue';
 import { getMap, gameInit, addMessage } from '../actions';
@@ -46,7 +46,6 @@ export const Game = () => {
         <Sidebar />
       </MapWithSidebar>
       <Info />
-      <Chat />
     </StyledGame>
   );
 };

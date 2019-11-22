@@ -36,12 +36,13 @@ export const Chat = () => {
 export default Chat;
 
 const StyledChat = styled.div`
-  width: 300px;
+  justify-self: flex-end;
+  width: 280px;
   display: flex;
   flex-direction: column;
-  border: 2px solid ${({ theme }) => theme.primary0};
-  border-radius: 10px;
-  background: #222222;
+  border: 1px solid #444444;
+  border-radius: 5px;
+  background: #444444;
 `;
 
 const ChatDisplay = styled.div`
@@ -49,10 +50,8 @@ const ChatDisplay = styled.div`
   width: 100%;
   font-family: ${({ theme }) => theme.infoBody};
   background: transparent
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   font-size: ${({ theme }) => theme.smallFont};
-  border-bottom: 1px solid ${({ theme }) => theme.primary0};
+  border-bottom: 1px solid #333;
 
   div {
     overflow-y: scroll;
