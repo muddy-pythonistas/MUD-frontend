@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { cornerCW_32x64, horzWall_32x64, vertWall_32x32 } from './assets';
 import { gold, sword, shield, key, door } from './assets/items';
-
+import {StyledPlayer} from '../player'
 export const Tile = ({
     n_to,
     e_to,
@@ -26,11 +26,11 @@ export const Tile = ({
     const [localOccupied, setLocalOccupied] = useState(false);
 
     useEffect(() => {
-        if(occupied_rooms.includes(id)){
-            setLocalOccupied(true)
-        }
-        else{
-            setLocalOccupied(false)
+        console.log('ueh')
+        if (occupied_rooms.includes(id)) {
+            setLocalOccupied(true);
+        } else {
+            setLocalOccupied(false);
         }
     }, [occupied_rooms]);
 
@@ -39,7 +39,7 @@ export const Tile = ({
         return (
             <TileContainer>
                 <FullTileFloor tile={sprite} />
-                {localOccupied && 'test'}
+                {localOccupied && <IdlePlayer id={id}/>}
                 <Item img={item.img} id={item.id} />
                 <TileWallGrid>
                     {n_to ? (
@@ -201,4 +201,11 @@ const Item = styled.div`
 
     animation: ${props =>
         props.id === 6 ? 'none' : 'mover 2s infinite ease-in-out'};
+`;
+
+const IdlePlayer = styled(StyledPlayer)`
+    background-position-x: 0px;
+    background-position-y: ${props => props.id%2 === 0 ? '0px' : '-32px'};
+    top: 32px;
+    left: 72px;
 `;
